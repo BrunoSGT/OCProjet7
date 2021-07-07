@@ -1,19 +1,25 @@
 <template>
+  <Nav/>
   <h1>Chat'Group'</h1>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link> |
-    <router-link to="/signup">Signup</router-link> |
-    <router-link to="/login">Login</router-link> |
+  <div id="users-view">
+    <!-- <router-link to="/admin">AdminUserList</router-link> -->
+    <router-link to="/user">Users</router-link> 
+  </div>
+  <div id="posts-view">
     <router-link to="/wallofposts">Wall of posts</router-link>
-    
   </div>
   <router-view/>
 </template>
 
 <script>
+import Nav from "@/components/Nav";
+//import { mapState } from 'vuex';
 export default{
-  name: "App"
+  name: "App",
+  components: {Nav}
+  // computed: {
+  // ...mapState([ 'currentUser' ])
+  // }
 }
 
 </script>

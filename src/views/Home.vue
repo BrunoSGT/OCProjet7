@@ -3,26 +3,24 @@
     <img alt="Groupomania logo" src="../assets/icon-above-font-16-9.png">
     <Signup></Signup>
 
-    <HelloWorld msg="Welcome to Your Vue.js App"/> 
+    
   </div>
-  <PostsBubble></PostsBubble>
+  <WallOfPosts></WallOfPosts>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-//import PostsBubble from '../components/PostsBubble.vue'
+import WallOfPosts from '../components/WallOfPosts.vue'
 import Signup from '../components/Signup.vue'
-// import Login from '../components/Login.vue'
+//import AdminUserList from '../components/AdminUserList.vue'
+
 
 
 export default {
   name: 'Home',
   components: {
-    HelloWorld,
-    //PostsBubble,
+    WallOfPosts,
     Signup
-    //Login
   }
 }
 

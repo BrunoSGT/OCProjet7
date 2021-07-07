@@ -1,8 +1,9 @@
 <template> <!-- doit créer la div "bubbleOfPosts" dans le HTML-->
-    
+    <p>Please register </p>
     <form class="form" id="signup-form">
             <div class="form__field">
                 <label for="firstName">Prénom</label>
+                <!--La directive  v-model  permet de s'assurer que les éléments du formulaire sont reliés à la bonne propriété du data store.-->
 				<input v-model="firstName" name="firstName" id="firstName" data-displayname="Prenom" class="form-control" required 
                 aria-required="true" type="text">
             </div>
@@ -27,7 +28,7 @@
 <script> // doit créer
 export default {
     name:'Signup-form',
-    // fonction de récup des valeurs saisies 
+    // fonction de récup des valeurs saisies (data store)
     data() {
         return{ 
             firstName: "",
@@ -66,5 +67,30 @@ export default {
 form {
   margin: 2em auto;
   max-width: 750px;
+}
+.form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.form-signin .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+}
+.form-control {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 </style>
