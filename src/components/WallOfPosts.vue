@@ -5,7 +5,7 @@
     <div class="allPostsBubbles">
         <ul>
             <li v-for="post in wallOfPosts" :key="post">
-                <a v-bind:href="post.url"> {{ post.title }} </a> : {{ post.content }}
+                <a v-bind:href="post.url"> {{ post.title }} </a> : {{ post.content }}, {{ post.id }}
             </li>
         </ul>
     </div>

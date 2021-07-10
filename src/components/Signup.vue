@@ -1,4 +1,4 @@
-<template> <!-- doit créer la div "bubbleOfPosts" dans le HTML-->
+<template> 
     <p>Please register </p>
     <form class="form" id="signup-form">
             <div class="form__field">
@@ -20,12 +20,13 @@
                 <label for="password">Mot de passe</label>
                 <input v-model="password" name="password" id="password" data-displayname="Mot de passe" class="form-control" required  aria-required="true" type="text">
             </div>
-            <button v-on:click="submit"  class="btn btn--submit">Envoyer</button>
+            <button @click.prevent="submit"  class="btn btn--submit">Envoyer</button>
         </form>
 
 </template>
 
-<script> // doit créer
+<script> 
+import axios from "axios"
 export default {
     name:'Signup-form',
     // fonction de récup des valeurs saisies (data store)
@@ -40,13 +41,14 @@ export default {
     // methode de récupération des valeurs saisies et envoi à la DB
     methods: {
         submit: function (event) { // eslint-disable-line no-unused-vars
-            const axios = require('axios');
-            axios.post('localhost:3000/api/signup', {
+            const contact = {
                 "firstname": this.firstName,
                 "lastname": this.lastName,
                 "email": this.email,
                 "password": this.password
-            })
+            }
+            console.log(contact)
+            axios.post('http://localhost:3000/api/signup', contact )
         .then(function (response) {
         console.log(response);
         })
@@ -68,12 +70,8 @@ form {
   margin: 2em auto;
   max-width: 750px;
 }
-.form-signin input[type="email"] {
-    margin-bottom: -1px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-}
-.form-signin .form-control {
+
+.form__field {
     position: relative;
     box-sizing: border-box;
     height: auto;
@@ -91,6 +89,6 @@ form {
     background-clip: padding-box;
     border: 1px solid #ced4da;
     border-radius: .25rem;
-    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    transition: border-color .50s ease-in-out,box-shadow .50s ease-in-out;
 }
 </style>

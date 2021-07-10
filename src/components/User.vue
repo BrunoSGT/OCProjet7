@@ -1,9 +1,10 @@
-<template> <!-- doit créer la div "bubbleOfPosts" dans le HTML-->
+<!-- pour afficher la liste des utilisateurs -->
+<template> 
     
-    <div class="allUsers">
+    <div id="allUsers">
         <ul>
             <li v-for="user in allUsers" :key="user">
-                <a v-bind:href="user.url"> {{ user.firstName }} </a> : {{ user.lastName }}, {{ user._id  }} 
+                <a v-bind:href="user.url"> {{ user.id }} </a> : {{ user.firstName }}, {{ user.lastName }}, {{ user._id  }} 
             </li>
         </ul>
     </div>
@@ -12,10 +13,14 @@
 
 </template>
 
-<script> // doit créer
+<script> 
 export default {
-    name:'Signup-form',
-    // fonction de récup des valeurs saisies 
+    name:'AllUsers',
+    props: {
+        data : [""]
+    }
+}
+/*    // fonction de récup des valeurs saisies 
     data() {
         return{ 
             firstName: "",
@@ -28,7 +33,7 @@ export default {
     methods: {
         submit: function (event) { // eslint-disable-line no-unused-vars
             const axios = require('axios');
-            axios.post('localhost:3000/api/signup', {
+            axios.get('localhost:3000/api/users', {
                 "firstname": this.firstName,
                 "lastname": this.lastName,
                 "email": this.email,
@@ -56,15 +61,18 @@ import axios from "axios"
             }
         },
         mounted() {
-            axios.get('http://localhost:3000/user/'//,{headers:{'Authorization': "bearer " + emplacement du token}})
+            axios.get('http://localhost:3000/api/user/'//,{headers:{'Authorization': "bearer " + emplacement du token}})
             )
             .then(response =>{
                 this.allUsers = response.data })
             
             .catch(error => { console.error(error)});
         }
-    }
+    } */
+
 </script>
+
+
 
 <style scoped lang="scss">
 form {
