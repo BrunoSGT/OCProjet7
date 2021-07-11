@@ -1,5 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Home from '../views/Home.vue'
+import LatestPosts from '../views/LatestPosts.vue'
+import Post from '../views/Post.vue'
 //import AdminUserList from '../views/AdminUserList.vue'
 
 const routes = [
@@ -35,7 +37,17 @@ const routes = [
     path: '/wallofposts',
     name: 'WallOfPosts',
     component: () => import('../views/WallOfPosts.vue')
-  }    
+  },
+  {
+    path: '/latestposts',
+    name: 'LatestPosts',
+    component: LatestPosts
+  },
+  {
+    path: '/post',
+    name: 'Post-form',
+    component: Post
+  }      
 ]
 
 const router = createRouter({

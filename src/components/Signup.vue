@@ -1,5 +1,5 @@
 <template> 
-    <p>Please register </p>
+    <p>Please register below or click on Signup </p>
     <form class="form" id="signup-form">
             <div class="form__field">
                 <label for="firstName">Prénom</label>

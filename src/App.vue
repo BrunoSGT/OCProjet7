@@ -1,10 +1,12 @@
 <template>
   <Nav/>
-  <h1>Chat'Group'</h1>
-  <div id="users-view">
+      <router-link to="/post">Nouveau post</router-link>
+
+  <!-- <router-link to="/latestposts">Latest posts</router-link> -->
+  <!-- <div id="users-view"> -->
     <!-- <router-link to="/admin">AdminUserList</router-link> -->
-    <router-link to="/user">Users</router-link> 
-  </div>
+    <!-- <router-link to="/user">Users</router-link>  -->
+  <!-- </div> -->
   <div id="posts-view">
     <router-link to="/wallofposts">Wall of posts</router-link>
   </div>

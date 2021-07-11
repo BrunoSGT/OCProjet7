@@ -1,16 +1,12 @@
 <template>
-    <div id="wallOfPosts">
-        <h1>Le mur des posts</h1>
-    </div>
-    <div class="allPostsBubbles">
+    <div class="LatestPostsBubbles">
         <ul>
             <li v-for="post in wallOfPosts" :key="post">
-                <a v-bind:href="post.url"> {{ post.title }} </a> : {{ post.content }}, {{ post.id }}
+                <a v-bind:href="post.url"> {{ post.title }} </a> : {{ post.content }}, {{ post.updatedAt}}
             </li>
         </ul>
     </div>
     <button @click="showPosts">Afficher tous les posts</button>
-    <!-- <div v-show="showPosts" class="postItems"></div> -->
 </template>
 
 <script>
@@ -32,4 +28,3 @@
         }
     }
 </script>
-

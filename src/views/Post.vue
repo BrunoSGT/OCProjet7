@@ -1,35 +1,55 @@
 <template>
     <div id="Post">
         <h1>Les posts</h1>
+        <Post/>
     </div>
-    <div class="PostsBubbles">
-        <ul>
-            <li v-for="post in wallOfPosts" :key="post">
-                <a v-bind:href="post.url"> {{ post.title }} </a> : {{ post.content }}
-            </li>
-        </ul>
-    </div>
-    <button @click="showPosts">Afficher tous les posts</button>
-    <!-- <div v-show="showPosts" class="postItems"></div> -->
 </template>
 
 <script>
-    import axios from "axios"
-    export default {
+import Post from '../components/Post.vue'
+import axios from 'axios'
+const token= JSON.parse(sessionStorage.getItem('data')); //jeton  --> ajout 10/07
+export default {
+  name: 'Home',
+  components: {
+    Post
+  },
+
+// ajout du 10/07
+
         data() {
             return {
-                Posts: [],
-                showPosts: false
+                posts: []
+               // showUsers: false
             }
         },
         mounted() {
-            axios.post('http://localhost:3000/post/'//,{headers:{'Authorization': "bearer " + emplacement du token}})
-            )
+            axios.post('http://localhost:3000/api/post/', {headers:{'Authorization': "Bearer " + token}})
+            
             .then(response =>{
-                this.Posts = response.data })
+                this.post = response.data })
             
             .catch(error => { console.error(error)});
         }
     }
 </script>
+<!--   <script>
+        import axios from "axios"
+        export default {
+            data() {
+                return {
+                    Posts: [],
+                    showPosts: false
+                }
+            },
+            mounted() {
+                axios.post('http://localhost:3000/post/'//,{headers:{'Authorization': "bearer " + emplacement du token}})
+                )
+                .then(response =>{
+                    this.Posts = response.data })
+                
+                .catch(error => { console.error(error)});
+            }
+        }
+    </script> -->
 
