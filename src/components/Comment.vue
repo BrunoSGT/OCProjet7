@@ -1,10 +1,10 @@
 <template>
-    <form id="Post-form">
-        <div class="form__field--postBubble">
-            <label for="titlePostBubble"></label>
-            <input v-model="title" name="titlePostBubble" id="titlePostBubble" data-displayname="Titre du post" class="form-control" required  aria-required="true" type="text">
-            <label for="contentPostBubble"></label>
-            <input v-model="content" name="contentPostBubble" id="contentPostBubble" data-displayname="Nouveau post" class="form-control" required  aria-required="true" type="text">
+    <form id="Comment-form">
+        <div class="form__field--commentBubble">
+            <label for="titleBubble"></label>
+            <input v-model="title" name="titleBubble" id="titleBubble" data-displayname="Titre du commentaire" class="form-control" required  aria-required="true" type="text">
+            <label for="postBubble"></label>
+            <input v-model="content" name="commentBubble" id="commentBubble" data-displayname="Nouveau commentaire" class="form-control" required  aria-required="true" type="text">
         </div>
     
     <!-- <input v-model="signature" name="signature" id="signature" aria-required="true" type="text"> -->
@@ -15,7 +15,7 @@
 <script> 
 import axios from "axios"
 export default {
-    name:'Post-form',
+    name:"Comment-form",
     // fonction de récup des valeurs saisies (data store)
     data() {
         return{ 
@@ -27,10 +27,11 @@ export default {
     methods: {
         submit: function () { // eslint-disable-line no-unused-vars
         console.log(this.title + this.content )
-            axios.post('http://localhost:3000/post/', {
+            axios.post('http://localhost:3000/comment/', {
                 "title": this.title,
                 "content": this.content,
-                "userId": 4
+                "postId": this.$route.params.id,
+                "userId": 1
             })
             
         .then(function (response) {
@@ -46,33 +47,14 @@ export default {
 
 <style lang="scss">
 
-#titlePostBubble {
-    margin-top: 25px;
-    margin-bottom: 10px;
-    border: 4px solid #e4e723;
-    border-radius: .9rem;
-    box-shadow: 0px 0px 20px #a4a70a;
-    background-color: #fff38a;
-}
-#contentPostBubble  {
+#commentBubble  {
     display: flex;
-    flex-direction: row;
-    flex-flow: row wrap;
-    flex-basis: 15px;
     width: 50%;
     height: fit-content;
     margin-left: 25%;
-    background-color: #ddffc6;
-    border: 4px solid #98fa3c;
-    border-radius: .9rem;   
-    box-shadow: 0px 0px 20px #709115;
-    height: 100%;
-}
-.contentPostBubble {
-        flex: 1 1 160px;
-    }
+    background-color: #f5bcef;
        
 
-
+}
 
 </style>

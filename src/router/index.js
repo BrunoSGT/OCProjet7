@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import LatestPosts from '../views/LatestPosts.vue'
 import Post from '../views/Post.vue'
+import PostToComment from '../views/PostToComment.vue'
 //import AdminUserList from '../views/AdminUserList.vue'
 
 const routes = [
@@ -37,6 +38,16 @@ const routes = [
     path: '/wallofposts',
     name: 'WallOfPosts',
     component: () => import('../views/WallOfPosts.vue')
+  },
+  {
+    path: '/posttocomment/:id',
+    name: 'PostToComment',
+    component: PostToComment
+  },
+  {
+    path: '/allcomments/:id',
+    name: 'AllComments',
+    component: () => import('../views/AllComments.vue')
   },
   {
     path: '/latestposts',

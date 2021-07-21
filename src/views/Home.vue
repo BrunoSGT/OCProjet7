@@ -1,7 +1,7 @@
 <template>
   <div class="home">
         <Signup></Signup>
-
+        <Login></Login>
     
   </div>
   
@@ -9,16 +9,16 @@
 
 <script>
 // @ is an alias to /src
-//import WallOfPosts from '../components/WallOfPosts.vue'
 import Signup from '../components/Signup.vue'
-//import AdminUserList from '../components/AdminUserList.vue'
+import Login from '../components/Login.vue'
 
 
 
 export default {
   name: 'Home',
   components: {
-    Signup
+    Signup,
+    Login
   }
 }
 

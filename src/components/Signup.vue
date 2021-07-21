@@ -40,7 +40,7 @@ export default {
     },
     // methode de récupération des valeurs saisies et envoi à la DB
     methods: {
-        submit: function (event) { // eslint-disable-line no-unused-vars
+        submit: function () { 
             const contact = {
                 "firstname": this.firstName,
                 "lastname": this.lastName,
@@ -49,14 +49,16 @@ export default {
             }
             console.log(contact)
             axios.post('http://localhost:3000/api/signup', contact )
-        .then(function (response) {
-        console.log(response);
-        })
-        .catch(function (error) {
-        console.log(error);
-    });
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        
+
             // `this` inside methods points to the Vue instance
-            alert('Hello ' + this.firstName + " " + this.lastName + '!')
+        alert('Hello ' + this.firstName + " " + this.lastName + '!')
             // `event` is the native DOM event
         }
     }
@@ -67,19 +69,21 @@ export default {
 
 <style scoped lang="scss">
 form {
-  margin: 2em auto;
-  max-width: 750px;
+    //display: block;
+    margin: auto;
+    max-width: 480px;
 }
 
 .form__field {
     position: relative;
     box-sizing: border-box;
     height: auto;
-    padding: 10px;
+    padding: 6px;
     font-size: 16px;
+    
 }
 .form-control {
-    display: block;
+    //display: block;
     width: 100%;
     padding: .375rem .75rem;
     font-size: 1rem;
@@ -87,8 +91,8 @@ form {
     color: #495057;
     background-color: #fff;
     background-clip: padding-box;
-    border: 1px solid #ced4da;
-    border-radius: .25rem;
+    border: 4px solid #3896f5;
+    border-radius: .9rem;
     transition: border-color .50s ease-in-out,box-shadow .50s ease-in-out;
 }
 </style>

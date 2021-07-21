@@ -1,14 +1,17 @@
 <template>
+    <div id="derniersPosts">
+      <router-link to="/latestposts">Latest posts</router-link>
+    </div>
     <div id="Post">
-        <h1>Les posts</h1>
+        <h1>Nouveau post</h1>
         <Post/>
     </div>
 </template>
 
 <script>
 import Post from '../components/Post.vue'
-import axios from 'axios'
-const token= JSON.parse(sessionStorage.getItem('data')); //jeton  --> ajout 10/07
+//import axios from 'axios'
+// const token= JSON.parse(sessionStorage.getItem('data')); //jeton  --> ajout 10/07
 export default {
   name: 'Home',
   components: {
@@ -23,14 +26,7 @@ export default {
                // showUsers: false
             }
         },
-        mounted() {
-            axios.post('http://localhost:3000/api/post/', {headers:{'Authorization': "Bearer " + token}})
-            
-            .then(response =>{
-                this.post = response.data })
-            
-            .catch(error => { console.error(error)});
-        }
+       
     }
 </script>
 <!--   <script>
@@ -52,4 +48,9 @@ export default {
             }
         }
     </script> -->
-
+<style lang="scss" scoped>
+#derniersPosts {
+    
+    background: #4fdace;
+}
+</style>

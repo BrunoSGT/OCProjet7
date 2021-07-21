@@ -1,7 +1,8 @@
 <template>
+    <div id="Login-interface">Please connect 😃</div>
     <form class="form" id="Login-form">
         <div class="form__field">
-            <label for="firstname">Firstname</label>
+            <label for="firstname">Prénom</label>
             <input v-model="firstname" name="firstname" id="firstname" data-displayname="firstname" class="form-control" required  aria-required="true" type="text">
         </div>
         <div class="form__field">
@@ -51,3 +52,31 @@ export default {
     
 }
 </script>
+
+<style scoped lang="scss">
+form {
+    margin: auto;
+    max-width: 480px;
+}
+
+.form__field {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 6px;
+    font-size: 16px;
+}
+.form-control {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 4px solid #e4e723;
+    border-radius: .9rem;
+    transition: border-color .70s ease-in-out,box-shadow .70s ease-in-out;
+}
+</style>
