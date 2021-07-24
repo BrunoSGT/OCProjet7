@@ -14,15 +14,16 @@
             </div>
             <div class="form__field">
                 <label for="email">Adresse email</label>
-                <input v-model="email" name="email" id="email" data-displayname="Adresse email" class="form-control" required  aria-required="true" type="email">
+                <input v-model="email" name="email" id="email" data-displayname="Adresse email" class="form-control" required  aria-required="true" type="email"> <br>
+                <span v-if="msg.email">{{ msg.email}}</span>
             </div>
             <div class="form__field">
                 <label for="password">Mot de passe</label>
-                <input v-model="password" name="password" id="password" data-displayname="Mot de passe" class="form-control" required  aria-required="true" type="text">
+                <input v-model="password" name="password" id="password" data-displayname="Mot de passe" class="form-control" required  aria-required="true" type="text"> <br>
+                <span v-if="msg.password">{{ msg.password}}</span>
             </div>
             <button @click.prevent="submit"  class="btn btn--submit">Envoyer</button>
         </form>
-
 </template>
 
 <script> 
@@ -35,11 +36,41 @@ export default {
             firstName: "",
             lastName: "",
             email: "",
-            password: ""
+            password: "",
+            msg:[]
+        }
+    },
+    // utilisation de watch pour valider le from avant l'envoi au server
+    watch: {
+        email(value){
+            this.email = value;
+            this.validateEmail(value);
+        },
+        password(value){
+            this.password = value;
+            this.validatePassword(value);
         }
     },
     // methode de récupération des valeurs saisies et envoi à la DB
     methods: {
+        //méthode de validation du form
+        validateEmail(value){
+            if (/^\w+([-.]?\w+)*@\w+([-.]?\w+)*(\.\w{2,3})+$/.test(value))
+            {
+                this.msg['email'] = '';
+            }else{
+                this.msg['email'] = 'Invalid Email Address'                
+            }
+        },
+        validatePassword(value){
+            let difference = 8 - value.length;
+            if (value.length<8) {
+                this.msg['password'] = 'Must be 8 characters! '+ difference + ' characters left' ;
+            }else{
+                this.msg['password'] = '';
+            }
+        },
+        //envoi du form à la DB
         submit: function () { 
             const contact = {
                 "firstname": this.firstName,

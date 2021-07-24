@@ -16,7 +16,7 @@
         
     </div>
     
-    <!-- <div v-show="showPosts" class="postItems"></div> -->
+
 </template>
 
 <script>

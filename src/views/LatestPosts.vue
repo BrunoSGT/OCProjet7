@@ -8,7 +8,6 @@
         </ul>
     </div>
     <button @click="showPosts">Afficher tous les posts</button>
-
 </template>
 
 <script>
@@ -21,7 +20,7 @@
                     
         return {
                 wallOfPosts: [],
-                showPosts: false
+                showPosts: false //true 
             }
         },
          
