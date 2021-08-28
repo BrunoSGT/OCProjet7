@@ -1,7 +1,6 @@
 <template>
 	<div class="signup">
-		<h1>Voici la page signup</h1>
-        <Signup></Signup>
+		<Signup></Signup>
 	</div>
 </template>
 <script>
@@ -21,3 +20,9 @@ export default {
 
 
 </script>
+
+<style lang="scss" scoped>
+.signup {
+    padding-top: 0.5em;
+}
+</style>

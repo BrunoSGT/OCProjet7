@@ -1,13 +1,7 @@
 <template>
   <Nav/>
-  <!-- ajout du 17/07 -->
-    <!-- <div id="derniersPosts">
-      <router-link to="/latestposts">Latest posts</router-link>
-    </div> -->
-  <!-- <div id="users-view"> -->
-    <!-- <router-link to="/admin">AdminUserList</router-link> -->
-    <!-- <router-link to="/user">Users</router-link>  -->
-  <!-- </div> -->
+  
+  
   <router-view/>
 </template>
 
@@ -32,13 +26,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  background: url(./assets/icon.png);
-  background-size: cover;
+  background: url(./assets/icon-above-font.png);
+  background-size: contain;
   background-repeat: no-repeat;
-  
+  background-position: center;
 }
 
 
 </style>
+
 
 

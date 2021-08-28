@@ -1,5 +1,10 @@
 <template>
     <form id="Post-form">
+        <p v-if="errors.length">Please correct the following error(s):
+                <ul>
+                    <li v-for="error in errors" v-bind:key="error"> {{ error }}</li>
+                </ul>
+            </p>
         <div class="form__field--postBubble">
             <label for="titlePostBubble"></label>
             <input v-model="title" name="titlePostBubble" id="titlePostBubble" data-displayname="Titre du post" class="form-control" required  aria-required="true" type="text">
@@ -8,7 +13,7 @@
         </div>
     
     <!-- <input v-model="signature" name="signature" id="signature" aria-required="true" type="text"> -->
-    <button @click.prevent="submit"  class="btn btn--submit">Envoyer</button>
+    <button @click="submit" id="btn btn--submit">Envoyer</button>
     </form>
 </template>
 
@@ -19,13 +24,29 @@ export default {
     // fonction de récup des valeurs saisies (data store)
     data() {
         return{ 
+            errors: [],
             title: "",
             content: ""
         }
     },
-    // methode de récupération des valeurs saisies et envoi à la DB
+    
     methods: {
-        submit: function () { // eslint-disable-line no-unused-vars
+// methode de validation des valeurs saisies avant l'envoi à la DB        
+        checkForm: function (e) {
+            if (this.title && this.content) {
+                return true;
+            }
+            this.errors = [];
+            if (!this.title) {
+                this.errors.push('Title required.');
+            }
+            if (!this.content) {
+                this.errors.push('Content required.');
+            }
+            e.preventDefault();
+        },
+// methode de récupération des valeurs saisies et envoi à la DB
+        submit: function () { 
         console.log(this.title + this.content )
             axios.post('http://localhost:3000/post/', {
                 "title": this.title,
@@ -47,6 +68,8 @@ export default {
 <style lang="scss">
 
 #titlePostBubble {
+    display: inline;
+    height: auto;
     margin-top: 25px;
     margin-bottom: 10px;
     border: 4px solid #e4e723;

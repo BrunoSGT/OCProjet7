@@ -3,7 +3,7 @@ import Home from '../views/Home.vue'
 import LatestPosts from '../views/LatestPosts.vue'
 import Post from '../views/Post.vue'
 import PostToComment from '../views/PostToComment.vue'
-//import AdminUserList from '../views/AdminUserList.vue'
+//import Admin from '../views/Admin.vue'
 
 const routes = [
   {
@@ -28,7 +28,12 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: () => import('../views/Login.vue')
-  },   
+  },  
+  {
+    path: '/admin',
+    name: 'Admin',
+    component: () => import('../views/Admin.vue')
+  },    
   {
     path: '/user',
     name: 'User',

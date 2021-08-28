@@ -1,5 +1,5 @@
 <template>
-    <div id="Login-interface">Please connect 😃</div>
+    <div id="Login-interface">Connectez-vous 😃</div>
     <form class="form" id="Login-form">
         <div class="form__field">
             <label for="firstname">Prénom</label>
@@ -13,7 +13,8 @@
             <label for="password">Mot de passe</label>
             <input v-model="password" name="password" id="password" data-displayname="Mot de passe" class="form-control" required  aria-required="true" type="text">
         </div>
-        <button @click.prevent="submit" class="btn btn--submit">Envoyer</button>
+        <button @click.prevent="submit" class="btn btn--submit">Se connecter</button>
+        <button @click.prevent="deleteAccount" class="btn btn--delete">Supprimer mon compte</button>
     </form>
 </template>                   
 
@@ -39,6 +40,10 @@ export default {
             })
         .then(function (response) {
         console.log(response);
+        // stockage local des infos durant la session de navigation
+        sessionStorage.setItem("admin",response.data.admin);
+        sessionStorage.setItem("user_id",response.data.userId);
+        sessionStorage.setItem("token",response.data.token);
         })
         .catch(function (error) {
         console.log(error);

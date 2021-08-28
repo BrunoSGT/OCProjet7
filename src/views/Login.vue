@@ -1,8 +1,6 @@
-
 <template>
 	<div class="login">
-		<h1>Voici la page login</h1>
-        <Login></Login>
+    <Login></Login>
 	</div>
 </template>
 <script>
@@ -16,3 +14,4 @@ export default {
   }
 }
 </script>
+
