@@ -11,6 +11,10 @@
                     <div class="linkToComment"><router-link :to="'/posttocomment/' + post.id ">Ajouter un commentaire</router-link></div>  
                     <div class="linkToAllComments"><router-link :to="'/allcomments/' + post.id ">Tous les commentaire</router-link></div>  
                 </div>
+                <div class="setPostVisible">
+                    <input type="checkbox" :id="'checkPost_'+String (post.id)" v-model=post.visible>
+                    <label :for="'checkPost_'+String (post.id)">Post visible</label>
+                </div>
             </li>
         </ul>
         

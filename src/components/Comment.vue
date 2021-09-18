@@ -31,7 +31,7 @@ export default {
                 "title": this.title,
                 "content": this.content,
                 "postId": this.$route.params.id,
-                "userId": 1
+                // "userId": this.$route.params.user_id
             })
             
         .then(function (response) {

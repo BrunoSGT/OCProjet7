@@ -16,7 +16,7 @@
                 <div class="contentCommentBubble"> {{ comment.content }}, {{ comment.updatedAt}} </div>
             </li>
         </ul>
-    </div>
+    </div> 
 </template>
 
 <script>

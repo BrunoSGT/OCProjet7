@@ -1,5 +1,8 @@
 <template> 
-    <p>Merci de vous inscrire ci-dessous</p>
+    <!-- s'affiche si le user n'existe pas encore -->
+
+
+    <p>😃 Merci de vous inscrire ci-dessous dans l'attente de la validation de votre compte 😃</p>
     <form class="form" id="signup-form">
             <div class="form__field">
                 <label for="firstName">Prénom</label>

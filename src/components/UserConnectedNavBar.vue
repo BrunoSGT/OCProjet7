@@ -9,10 +9,10 @@
             </router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/allusers">Tous les Utilisateurs</router-link>
+            <router-link to="/latestPosts">Derniers Posts</router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/allPosts">Tous les Posts</router-link>  
+            <router-link to="/wallofposts">Murs des Posts</router-link>  
           </li> 
           <li class="nav-item">
             <router-link to="/logout">Déconnexion</router-link>  
@@ -20,32 +20,15 @@
         </ul>
       </div>  
     </div>
-  </nav>  
-</template>
+  </nav>    
+</template> -->
 
 <script>
 export default {
-    name: "AdminNavBar"
+  name: 'UserConnectedNavBar'
 }
 </script>
 
-<style> 
-#nav-brand {
-    font-size: 20px;
-}
-.navbar-nav { 
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    background-color: #7cc7c1;
-}
-.nav-item {
-    margin-right: 2em;
-    text-transform: uppercase;
-    font-weight: 600;
-}  
-.nav-item:first-child {
-    margin-right: auto;
-    margin-left: 2em;
-}  
+<style lang="scss">
+
 </style>

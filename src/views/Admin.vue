@@ -1,28 +1,26 @@
 <template>
-  <AdminNavBar/>
-  <!-- ajout du 17/07 -->
-    <!-- <div id="derniersPosts">
-      <router-link to="/latestposts">Latest posts</router-link>
-    </div> -->
-  <!-- <div id="users-view"> -->
-  
-  <div id="admin-views">
-
-    <router-link to="/admin">AdminUsersList</router-link> |
-    <router-link to="/user">Users</router-link>
-  </div>
-    <!-- <router-link to="/user">Users</router-link>  -->
-  <!-- </div> -->
+  <!-- Si (if) l'utilisateur a les autorisations par défaut, afficher ce qui suit -->
+  <section v-if="admin == 2">
+    <AdminNavBar/>
+  </section> 
   <router-view/>
 </template>
 
 <script>
-import AdminNavBar from "@/components/AdminNavBar"
-
+import AdminNavBar from "@/components/AdminNavBar";
 export default{
-  name: "Admin",
-  components: {AdminNavBar}
-  
+  name: "App",
+  components: {AdminNavBar},
+  data() {
+        return{ 
+            admin: ""
+            
+        }
+   },
+   mounted: function(){
+     console.log(sessionStorage.getItem('admin'));
+     this.admin = sessionStorage.getItem('admin');
+     
+   }
 }
-
 </script>

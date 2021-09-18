@@ -1,24 +1,39 @@
 <!-- pour afficher la liste des utilisateurs -->
 <template> 
-    
-    <div id="allUsers">
+    <div id="allUsers" v-for="user in allUsers" :key="user">
         <ul>
-            <li v-for="user in allUsers" :key="user">
-                <a v-bind:href="user.url"> {{ user.id }} </a> : {{ user.firstName }}, {{ user.lastName }}, {{ user._id  }} 
+            <li> 
+                <div class="usersList" v-bind:href="user.url"> {{ user.id }}  : {{ user.firstname }}, {{ user.lastname }}
+                </div>
+                <input type="checkbox" :id="'checkUser_'+String (user.id)" v-model=user.status>
+                <label :for="'checkUser_'+String (user.id)">User visible</label>
             </li>
         </ul>
-    </div>
-            
+        
+    </div> 
     
 
 </template>
 
 <script> 
+import axios from "axios"
 export default {
-    name:'AllUsers',
-    props: {
-        data : [""]
-    }
+    data() {
+        return {
+            allUsers: [],
+            showUsers: false
+        }
+    },
+    mounted() {
+        const token= JSON.stringify(sessionStorage.getItem('token')); //jeton
+        axios.get('http://localhost:3000/api/user',{headers:{"Authorization": "Bearer " + token}})
+        
+        .then(response =>{
+            this.allUsers = response.data })
+        
+        .catch(error => { console.error(error)});
+    },
+
 }
 /*    // fonction de récup des valeurs saisies 
     data() {
