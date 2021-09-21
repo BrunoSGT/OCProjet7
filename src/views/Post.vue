@@ -1,6 +1,6 @@
 <template>
     <div id="derniersPosts">
-      <router-link to="/latestposts">Latest posts</router-link>
+      <router-link to="/latestsposts">Latest posts</router-link>
     </div>
     <div id="Post">
         <h1>Nouveau post</h1>

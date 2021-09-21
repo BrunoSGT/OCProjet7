@@ -1,4 +1,5 @@
 <template>
+    
     <form id="Comment-form">
         <div class="form__field--commentBubble">
             <label for="titleBubble"></label>
@@ -12,10 +13,11 @@
     </form>
 </template>
 
-<script> 
+<script>
 import axios from "axios"
 export default {
     name:"Comment-form",
+    
     // fonction de récup des valeurs saisies (data store)
     data() {
         return{ 

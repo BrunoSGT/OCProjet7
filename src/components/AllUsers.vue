@@ -1,5 +1,9 @@
 <!-- pour afficher la liste des utilisateurs -->
 <template> 
+    <div>
+        <AdminNavBar/>   
+    </div> 
+
     <div id="allUsers" v-for="user in allUsers" :key="user">
         <ul>
             <li> 
@@ -16,8 +20,10 @@
 </template>
 
 <script> 
+import AdminNavBar from "./AdminNavBar";
 import axios from "axios"
 export default {
+    components: {AdminNavBar},
     data() {
         return {
             allUsers: [],

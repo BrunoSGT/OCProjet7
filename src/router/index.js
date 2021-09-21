@@ -1,9 +1,8 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Home from '../views/Home.vue'
-import LatestPosts from '../views/LatestPosts.vue'
+// import Admin from '../views/Admin.vue'
 import Post from '../views/Post.vue'
 import PostToComment from '../views/PostToComment.vue'
-// import Admin from '../views/Admin.vue'
 
 const routes = [
   {
@@ -55,6 +54,11 @@ const routes = [
     component: () => import('../components/AllPosts.vue')
   },
   {
+    path: '/latestsposts',
+    name: 'LatestsPosts',
+    component: () => import('../components/LatestsPosts.vue')
+  },
+  {
     path: '/wallofposts',
     name: 'WallOfPosts',
     component: () => import('../views/WallOfPosts.vue')
@@ -73,11 +77,6 @@ const routes = [
     path: '/allcomments/:id',
     name: 'AllComments',
     component: () => import('../views/AllComments.vue')
-  },
-  {
-    path: '/latestposts',
-    name: 'LatestPosts',
-    component: LatestPosts
   },
   {
     path: '/post',

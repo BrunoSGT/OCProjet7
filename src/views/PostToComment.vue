@@ -1,4 +1,7 @@
 <template>
+    <div>
+        <UserConnectedNavBar/>
+    </div>
     <a>barre de recherche</a>
     <div class="PostsBubbles">
         <ul>
@@ -13,33 +16,32 @@
 </template>
 
 <script>
-    import Comment from '../components/Comment.vue'
-    import axios from 'axios'
+import UserConnectedNavBar from "@/components/UserConnectedNavBar";
+import Comment from '../components/Comment.vue'
+import axios from 'axios'
 
-    export default {
-        name: 'PostToComment',
-        components: {
-            Comment
-        },
-        data() {
-            return {
-                posts: [],
-                showPosts: false,
-                comments: []
-               // showUsers: false
-            }
-        },
-        mounted() {
-            axios.get('http://localhost:3000/post/'+ this.$route.params.id//,{headers:{'Authorization': "bearer " + emplacement du token}})
-            )
-            .then(response =>{
-                this.posts = response.data;
-                console.log(this.posts)})
-            
-            .catch(error => { console.error(error)});
+export default {
+    name: 'PostToComment',
+    components: {UserConnectedNavBar, Comment},
+    data() {
+        return {
+            posts: [],
+            showPosts: false,
+            comments: []
+            // showUsers: false
         }
-       
+    },
+    mounted() {
+        axios.get('http://localhost:3000/post/'+ this.$route.params.id//,{headers:{'Authorization': "bearer " + emplacement du token}})
+        )
+        .then(response =>{
+            this.posts = response.data;
+            console.log(this.posts)})
+        
+        .catch(error => { console.error(error)});
     }
+    
+}
 </script>
 
 <style lang="scss" scoped>

@@ -1,4 +1,4 @@
-<template>
+<!--<template>
     <div class="LatestPostsBubbles">
         <ul>
             <li v-for="post in wallOfPosts" :key="post">
@@ -25,7 +25,7 @@
         },
          
         mounted() {
-            axios.get('http://localhost:3000/post/latestPosts')//,{headers:{'Authorization': "bearer " + emplacement du token}})
+            axios.get('http://localhost:3000/post/latestsPosts')//,{headers:{'Authorization': "bearer " + emplacement du token}})
             
             .then(response =>{
                 this.wallOfPosts = response.data })
@@ -72,4 +72,4 @@ li {
     transition: transform 500ms; 
 }
 
-</style>
+</style>-->

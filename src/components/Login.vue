@@ -23,18 +23,10 @@
             <button @click.prevent="submit" class="btn btn--submit">Se connecter</button>
             <router-link to="/admin"></router-link>
         </div>
-<!-- test bouton de déconnexion -->
-        <section> <!-- v-if="admin > 0">  -->
-            <!-- <div id="logout">
-            <button  class="btn btn--logout">Se déconnecter</button>
-            <router-link to="/logout"></router-link>
-            </div> -->
-        </section>
     </form>
 </template>
 
 <script>
-    // import AdminNavBar from "@/components/AdminNavBar";
     import router from "@/router/index"
     import axios from "axios"
     export default {
@@ -64,7 +56,7 @@
                         sessionStorage.setItem("user_id", response.data.userId);
                         sessionStorage.setItem("token", response.data.token);
                         
-                        location.replace("/admin")
+                        location.replace("#/admin")
                     })
                     .catch(function (error) {
                         console.log(error);

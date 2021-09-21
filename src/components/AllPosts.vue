@@ -1,4 +1,7 @@
 <template>
+    <div>
+        <AdminNavBar/>   
+    </div> 
     <a>barre de recherche</a>
     <div class="allPostsBubbles">
         <ul>
@@ -20,23 +23,25 @@
 </template>
 
 <script>
-    import axios from "axios"
-    export default {
-        name: 'allPosts',
-        data() {
-            return {
-                allPosts: [],
-                showPosts: false
-            }
-        },
-        mounted() {
-            const token= JSON.stringify(sessionStorage.getItem('token')); //jeton
-            axios.get('http://localhost:3000/post/',{headers:{'Authorization': "bearer " + token}})
-            
-            .then(response =>{
-                this.allPosts = response.data })
-            
-            .catch(error => { console.error(error)});
+import AdminNavBar from "@/components/AdminNavBar";
+import axios from "axios"
+export default {
+    name: 'allPosts',
+    components: {AdminNavBar},
+    data() {
+        return {
+            allPosts: [],
+            showPosts: false
         }
+    },
+    mounted() {
+        const token= JSON.stringify(sessionStorage.getItem('token')); //jeton
+        axios.get('http://localhost:3000/post/',{headers:{'Authorization': "bearer " + token}})
+        
+        .then(response =>{
+            this.allPosts = response.data })
+        
+        .catch(error => { console.error(error)});
     }
+}
 </script>

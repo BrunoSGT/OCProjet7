@@ -1,53 +1,54 @@
+<!--Murs des Posts visibles par les utilisatuers autorisés-->
 <template>
+    <div>
+        <UserConnectedNavBar/>
+    </div>
     <div id="wallOfPosts">
         <h1>Le mur des posts</h1>
     </div>
     <a>barre de recherche</a>
     <div class="allPostsBubbles">
         <ul>
-            <li v-for="post in wallOfPosts" :key="post">
+            <li v-for="post in wallOfPosts" :key="post.visible">
                 <div class="titlePostBubble" v-bind:href="post.url"> {{ post.title }} </div>  
                 <div class="contentPostBubble">{{ post.content }}, {{ post.id }}, <!--{{ username}},--> {{ post.updatedAt}} 
                     <div class="linkToComment"><router-link :to="'/posttocomment/' + post.id ">Ajouter un commentaire</router-link></div>  
                     <div class="linkToAllComments"><router-link :to="'/allcomments/' + post.id ">Tous les commentaire</router-link></div>  
                 </div>
-                <div class="setPostVisible">
-                    <input type="checkbox" :id="'checkPost_'+String (post.id)" v-model=post.visible>
-                    <label :for="'checkPost_'+String (post.id)">Post visible</label>
-                </div>
             </li>
         </ul>
-        
     </div>
     
 
 </template>
 
 <script>
-    
-    import axios from "axios"
-    export default {
-        name: 'WallOfPosts',
-        components: {
-        },
-        data() {
-            return {
-                wallOfPosts: [],
-                showPosts: false
-            }
-        },
-        mounted() {
-            axios.get('http://localhost:3000/post/'//,{headers:{'Authorization': "bearer " + emplacement du token}})
-            )
-            .then(response =>{
-                this.wallOfPosts = response.data })
-            
-            .catch(error => { console.error(error)});
+import UserConnectedNavBar from "@/components/UserConnectedNavBar";
+import axios from "axios"
+export default {
+    name: 'WallOfPosts',
+    components: {UserConnectedNavBar},
+    data() {
+        return {
+            status: "",
+            visible: true,
+            wallOfPosts: [],
+            showPosts: false
         }
-    }
+    },
+    mounted() {
+        this.status = sessionStorage.getItem('status');
+        axios.get('http://localhost:3000/post/wallOfPosts'//,{headers:{'Authorization': "bearer " + emplacement du token}})
+        )
+        .then(response =>{
+            this.wallOfPosts = response.data;
+            this.visible = response.data.visible})
+        .catch(error => { console.error(error)});
+    },
+}
 </script>
 
-<style lang="scss" scoped>
+<style>
 .titlePostBubble {
     margin-top: 25px;
     margin-bottom: 10px;

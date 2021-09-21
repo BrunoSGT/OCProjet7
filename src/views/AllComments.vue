@@ -1,4 +1,7 @@
 <template>
+    <div>
+        <UserConnectedNavBar/>
+    </div>
     <a>barre de recherche</a>
     <div class="PostsBubbles">
         <ul>
@@ -20,13 +23,11 @@
 </template>
 
 <script>
+import UserConnectedNavBar from "@/components/UserConnectedNavBar";
 import axios from "axios"
-
 export default {
     name: 'AllComments',
-    components: {
-        
-    },
+    components: {UserConnectedNavBar},
     data() {
         return {
             posts: [],
