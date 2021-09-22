@@ -6,7 +6,7 @@ import PostToComment from '../views/PostToComment.vue'
 
 const routes = [
   {
-    path: '/',
+    path: '/home',
     name: 'Home',
     component: Home
   },

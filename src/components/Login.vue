@@ -1,7 +1,7 @@
 <template>
-    <!-- <section v-if="admin == 2">
+    <section v-if="admin == 2">
         <AdminNavBar/>
-    </section> -->
+    </section>
     <div id="Login-interface">Connectez-vous 😃</div>
     <form class="form" id="Login-form">
         <div class="form__field">
@@ -47,39 +47,24 @@
                         "firstname": this.firstname,
                         "email": this.email,
                         "password": this.password
-                    })
-                    .then(function (response) {
-                        console.log(response);
-                        // stockage local des infos durant la session de navigation lors de l'envoi du formulaire
-                        sessionStorage.setItem("admin", response.data.admin); // paire("clé",valeur)
-                        sessionStorage.setItem("status", response.data.status);
-                        sessionStorage.setItem("user_id", response.data.userId);
-                        sessionStorage.setItem("token", response.data.token);
-                        
-                        location.replace("#/admin")
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                        router.push("/signup")
-                    });
+                })
+                .then(function (response) {
+                    console.log(response);
+                    // stockage local des infos durant la session de navigation lors de l'envoi du formulaire
+                    sessionStorage.setItem("admin", response.data.admin); // paire("clé",valeur)
+                    sessionStorage.setItem("status", response.data.status);
+                    sessionStorage.setItem("user_id", response.data.userId);
+                    sessionStorage.setItem("token", response.data.token);
                     
- ///////////////condition d'affichage du pop-up de bienvenue
-                // function welcome(){
-                //     let admin = this.admin
-                //     if (admin === 1 || admin === 2) {
-                    // `this` inside methods points to the Vue instance
-
-                    // alert('Hello ' + this.firstname + '!')
-
-                    // `event` is the native DOM event
-                //     }
-                // }
-                // welcome(this.admin)
+                    location.replace("#/admin");
+                    
+                })
+                .catch(function (error) {
+                    console.log(error);
+                    router.push("/signup")
+                });
             },
-            // logout() {
-            //     window.sessionStorage.removeItem("user_id");
-            //     window.location.replace("http://localhost:8080/#/")
-            // },
+            
         },
     
 ////////test pour faire apparaitre le lien "créer mon compte" si admin == 0 
@@ -96,14 +81,6 @@
             this.admin = sessionStorage.getItem('admin')
         }
     };
-
-
-            // createAccount: function (event) {
-
-            // }
-            // fonction de récup + assign valeur à la variable message (this.message)+ mounted (get)
-
-        
     
 </script>
 

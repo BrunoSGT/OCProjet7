@@ -3,7 +3,7 @@
     <p>Section Administateur</p>
   </section>
   <section v-else-if="status == 1">
-    <router-link to="/UserConnectedNavBar.vue">Espace Utilisateur</router-link>
+    <UserConnectedNavBar/>
   </section>
   <section v-else>                  
     <div class="home">
@@ -17,14 +17,12 @@
 
 <script>
 import Login from '../components/Login.vue'
-
+import UserConnectedNavBar from "@/components/UserConnectedNavBar";
 
 
 export default {
   name: 'Home',
-  components: {
-    Login
-  }
+  components: {Login, UserConnectedNavBar}
 }
 </script>
 

@@ -8,11 +8,13 @@
             <li v-for="post in allPosts" :key="post">
                 <div class="titlePostBubble" v-bind:href="post.url"> {{ post.title }} 
                 </div>  
-                <div class="contentPostBubble">{{ post.content }}, {{ post.id }}, {{ username}},{{ post.updatedAt}} 
+                <div class="contentPostBubble">{{ post.content }}, {{ post.id }}, {{ username }},{{ post.updatedAt }} 
                 </div>
                 <div class="setPostVisible">
-                    <input type="checkbox" :id="'checkPost_'+String (post.id)" v-model=post.visible>
+                    <input type="checkbox" :id="'checkPost_'+String (post.id)"  v-model=post.visible
+                    @click="submit(post.id, post.visible)">
                     <label :for="'checkPost_'+String (post.id)">Post visible</label>
+
                 </div>
             </li>
         </ul>
@@ -26,12 +28,11 @@
 import AdminNavBar from "@/components/AdminNavBar";
 import axios from "axios"
 export default {
-    name: 'allPosts',
+    name: 'AllPosts',
     components: {AdminNavBar},
     data() {
         return {
             allPosts: [],
-            showPosts: false
         }
     },
     mounted() {
@@ -42,6 +43,25 @@ export default {
             this.allPosts = response.data })
         
         .catch(error => { console.error(error)});
-    }
+    },
+    methods: {
+        submit(id, postVisibility){ 
+            axios.put('http://localhost:3000/post/'+id,
+            {
+                visible: postVisibility ? 0:1 
+            })
+            
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            
+            });
+            console.log(event.target.id)
+            console.log(event.target.checked)
+            console.log(event.target.id.substring(10))
+        }
+    }                
 }
 </script>

@@ -1,8 +1,5 @@
 <!--Les 4 derniers Posts visibles par les utilisateurs autorisés-->
 <template>
-    <div>
-        <UserConnectedNavBar/>
-    </div>
     <div class="LatestPostsBubbles">
         <ul>
             <li v-for="post in wallOfPosts" :key="post">
@@ -14,10 +11,8 @@
 </template>
 
 <script>
-import UserConnectedNavBar from "@/components/UserConnectedNavBar";
 import axios from "axios"
 export default {
-    components: {UserConnectedNavBar},
     data() {
         //if(post.updatedAt < post[updatedAt].length){
         //    return wallOfPosts < 5
