@@ -9,10 +9,16 @@
             </router-link>
           </li>
           <li class="nav-item">
+            <router-link to="/post">nouveau Post</router-link>
+          </li>
+          <li class="nav-item">
             <router-link to="/latestsposts">Derniers Posts</router-link>
           </li>
           <li class="nav-item">
             <router-link to="/wallofposts">Murs des Posts</router-link>  
+          </li> 
+          <li class="nav-item">
+            <router-link to="/userprofile">Mon Profil</router-link>  
           </li> 
           <li class="nav-item">
             <router-link to="/logout">Déconnexion</router-link>  
@@ -31,21 +37,24 @@ export default {
 
 <style>
 #nav-brand {
-    font-size: 20px;
+  font-size: 20px;
+  color: #122443;
 }
 .navbar-nav { 
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    background-color: #7cc7c1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: #d1515a9c;
+  color: #122443;
 }
 .nav-item {
-    margin-right: 2em;
-    text-transform: uppercase;
-    font-weight: 600;
+  margin-right: 2em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #122443;
 }  
 .nav-item:first-child {
-    margin-right: auto;
-    margin-left: 2em;
+  margin-right: auto;
+  margin-left: 2em;
 }  
 </style>

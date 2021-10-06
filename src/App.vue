@@ -1,11 +1,9 @@
 <template>
-
-<main>
+  <header class="logo">
+    <img src="../src/assets/icon-left-font-monochrome-white-redux.png" style="width: 50%; heigth: 50%" alt="logo Groupomania">
+  </header>
   <router-view/>
-</main>
-<footer>
   <Footer/> 
-</footer>
 </template>
 
 <script>
@@ -19,19 +17,26 @@ export default{
 
 <style lang="scss">
 body {
-  background-color: rgb(145, 211, 236);
+    background-image: url("../src/assets/Tour_Eiffel_sepia.jpeg");
+    background-attachment:fixed;
+    font-family: system-ui, system-ui, sans-serif;
+    background-color: #E6E6E6;
+    color: #101010;
+    text-align: center;
+    // height: 750px;
+
 }
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  // background: url(./assets/icon-above-font.png);
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+a {
+  text-decoration: none;
 }
+.logo {
+  background-color: #122443;
+  color: white;
+  font-size: 15px;
+  width: 100%;
+  padding: 15px;
+}
+
 
 
 </style>

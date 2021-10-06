@@ -3,7 +3,7 @@
   <div v-if="this.status == 2">
     <AdminNavBar/>
     <div id="accueilAdmin">
-      <LatestsPosts/>
+      <p> Derniers posts </p>
     </div>
   </div> 
   <div v-else>
@@ -15,14 +15,12 @@
 <script>
 import AdminNavBar from "@/components/AdminNavBar";
 import UserConnectedNavBar from "@/components/UserConnectedNavBar";
-import LatestsPosts from "@/components/LatestsPosts"
 export default{
-  name: "App",
-  components: {AdminNavBar,UserConnectedNavBar,LatestsPosts},
+  name: "Admin",   //"App"
+  components: {AdminNavBar, UserConnectedNavBar},
   data() {
         return{ 
             status: ""
-            
         }
    },
    mounted: function(){

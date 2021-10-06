@@ -13,12 +13,14 @@
         </div>
     
     <!-- <input v-model="signature" name="signature" id="signature" aria-required="true" type="text"> -->
-    <button @click="submit" id="btn btn--submit">Envoyer</button>
+    <button type="button" @click="submit" id="btn btn--submit">Envoyer</button>
     </form>
 </template>
 
 <script> 
 import axios from "axios"
+// const token= JSON.stringify(sessionStorage.getItem('token')); //jeton
+
 export default {
     name:'Post-form',
     // fonction de récup des valeurs saisies (data store)
@@ -26,7 +28,8 @@ export default {
         return{ 
             errors: [],
             title: "",
-            content: ""
+            content: "",
+            user_id: sessionStorage.getItem('user_id')
         }
     },
     
@@ -48,18 +51,19 @@ export default {
 // methode de récupération des valeurs saisies et envoi à la DB
         submit: function () { 
         console.log(this.title + this.content )
-            axios.post('http://localhost:3000/post/', {
+            axios.post('http://localhost:3000/post', {//headers:{'Authorization': "bearer " + token},
+     
                 "title": this.title,
                 "content": this.content,
-                "userId": 4
+                "userId": this.user_id
             })
-            
-        .then(function (response) {
-        console.log(response);
-        })
-        .catch(function (error) {
-        console.log(error);
-        });     
+
+            .then(function (response) {
+            console.log(response);
+            })
+            .catch(function (error) {
+            console.log(error);
+            });     
         }
     }
 }   // fonction de récup + assign valeur à la variable message (this.message)+ mounted (get)

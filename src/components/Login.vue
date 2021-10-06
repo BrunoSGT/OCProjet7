@@ -1,7 +1,4 @@
 <template>
-    <section v-if="admin == 2">
-        <AdminNavBar/>
-    </section>
     <div id="Login-interface">Connectez-vous 😃</div>
     <form class="form" id="Login-form">
         <div class="form__field">
@@ -31,7 +28,6 @@
     import axios from "axios"
     export default {
         name: 'Login-form',
-        // components: {AdminNavBar},
         // fonction de récup des valeurs saisies 
         data() {
             return {
@@ -55,7 +51,6 @@
                     sessionStorage.setItem("status", response.data.status);
                     sessionStorage.setItem("user_id", response.data.userId);
                     sessionStorage.setItem("token", response.data.token);
-                    
                     location.replace("#/admin");
                     
                 })
@@ -72,7 +67,6 @@
         dataApp() {
             return{ 
                 admin: ""
-            
             }
         },
         mounted: function(){
@@ -107,8 +101,12 @@
         color: #495057;
         background-color: #fff;
         background-clip: padding-box;
-        border: 4px solid #e4e723;
+        border: 4px solid #122443;
         border-radius: .9rem;
         transition: border-color .70s ease-in-out, box-shadow .70s ease-in-out;
+    }
+    .btn {
+        background-color: #122443;
+        color: white;
     }
 </style>

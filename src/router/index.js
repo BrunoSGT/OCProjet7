@@ -1,12 +1,13 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import Home from '../views/Home.vue'
+import Home from '../views/Home.vue' 
+//import About from '../views/About.vue' //autre façon d'importer le component dans la route 
 // import Admin from '../views/Admin.vue'
 import Post from '../views/Post.vue'
 import PostToComment from '../views/PostToComment.vue'
-
+import AllComments from '../components/AllComments.vue'
 const routes = [
   {
-    path: '/home',
+    path: '/',
     name: 'Home',
     component: Home
   },
@@ -18,11 +19,11 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import( /*webpackChunkName  "about" */  '../views/About.vue')
   },
-  {
-    path: '/login',
-    name: 'Login',
-    component: () => import('../components/Login.vue')
-  },  
+  // {
+  //   path: '/login',
+  //   name: 'Login',
+  //   component: () => import('../components/Login.vue')
+  // },  
   {
     path: '/logout',
     name: 'Logout',
@@ -49,6 +50,11 @@ const routes = [
     component: () => import('../components/AllUsers.vue')
   },
   {
+    path: '/post',
+    name: 'Post-form',
+    component: Post
+  },      
+  {
     path: '/allposts',
     name: 'AllPosts',
     component: () => import('../components/AllPosts.vue')
@@ -69,20 +75,20 @@ const routes = [
     component: PostToComment
   },
   {
-    path: '/allcomments/',
+    path: '/allcomments',
     name: 'AllComments',
-    component: () => import('../views/AllComments.vue')
+    component: AllComments
+  },
+  {
+    path: '/userprofile',
+    name: 'UserProfile',
+    component: () => import('../components/UserProfile.vue')
   },
   {
     path: '/allcomments/:id',
     name: 'AllComments',
     component: () => import('../views/AllComments.vue')
   },
-  {
-    path: '/post',
-    name: 'Post-form',
-    component: Post
-  }      
 ]
 
 const router = createRouter({

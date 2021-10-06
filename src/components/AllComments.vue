@@ -1,4 +1,3 @@
-
 <template>
     <div>
         <UserConnectedNavBar/>
@@ -15,8 +14,7 @@
     </div>
     <div class="allCommentsBubbles">
         <ul>
-            <li v-for="comment in allComments" :key="comment">  comment.visible
-            
+            <li v-for="comment in allComments" :key="comment">  <!-- //.visible -->
                 <div class="titleCommentBubble" > {{ comment.title }} </div>  
                 <div class="contentCommentBubble"> {{ comment.content }}, {{ comment.updatedAt}} </div>
             </li>
@@ -46,7 +44,7 @@ export default {
             
         .catch(error => { console.error(error)});
 
-        // récupère le commantaires liés à un post
+        // récupère tous les commantaires
         axios.get('http://localhost:3000/comment/'+ this.$route.params.id//,{headers:{'Authorization': "bearer " + emplacement du token}})
         )
         .then(response =>{
@@ -57,4 +55,4 @@ export default {
         .catch(error => { console.error(error)});
     } 
 }
-</script> 
+</script>   

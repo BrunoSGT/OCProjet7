@@ -30,7 +30,7 @@ export default {
             sessionStorage.removeItem("token");
             sessionStorage.clear();
             //router.replace("/login")
-            router.replace("/home")
+            router.replace("/")
         }, 
     },
     mounted: function(){

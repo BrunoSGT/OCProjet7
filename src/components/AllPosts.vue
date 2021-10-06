@@ -8,12 +8,12 @@
             <li v-for="post in allPosts" :key="post">
                 <div class="titlePostBubble" v-bind:href="post.url"> {{ post.title }} 
                 </div>  
-                <div class="contentPostBubble">{{ post.content }}, {{ post.id }}, {{ username }},{{ post.updatedAt }} 
+                <div class="contentPostBubble">{{ post.content }}, {{ post.id }}, {{ post.username }},{{ post.updatedAt }} 
                 </div>
                 <div class="setPostVisible">
                     <input type="checkbox" :id="'checkPost_'+String (post.id)"  v-model=post.visible
                     @click="submit(post.id, post.visible)">
-                    <label :for="'checkPost_'+String (post.id)">Post visible</label>
+                    <label :for="'checkPost_'+String (post.id)">{{post.visible}}Post visible</label>
 
                 </div>
             </li>
@@ -65,3 +65,18 @@ export default {
     }                
 }
 </script>
+
+<style scoped lang="scss">
+.titlePostBubble {
+  background-color: #122443;
+  color: white;
+}
+.contentPostBubble {
+  background-color: #122443b5;
+  color: white;
+}
+.setPostVisible {
+    background-color: #aeaeae52;
+    margin-bottom: 6px;
+}
+</style>

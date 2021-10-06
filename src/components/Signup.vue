@@ -1,8 +1,8 @@
 <template> 
     <!-- s'affiche si le user n'existe pas encore -->
-
-
-    <p>😃 Merci de vous inscrire ci-dessous dans l'attente de la validation de votre compte 😃</p>
+    <div>   
+    😃 Merci de vous inscrire ci-dessous dans l'attente de la validation de votre compte 😃
+    </div>
     <form class="form" id="signup-form">
             <div class="form__field">
                 <label for="firstName">Prénom</label>
@@ -26,8 +26,10 @@
                 <input v-model="password" name="password" id="password" data-displayname="Mot de passe" class="form-control" required  aria-required="true" type="text"> <br>
                 <span v-if="msg.password">{{ msg.password}}</span>
             </div>
-            <button @click.prevent="submit()">S'inscrire</button>
-            <!-- <button @click.prevent="submit"  id="btn btn--submit">Envoyer</button> -->
+            <button class="btn btn--submit" @click.prevent="submit()">S'inscrire</button>
+            <div class="backHome">
+                <router-link to="/">Retour à l'accueil</router-link>
+            </div>
         </form>
 </template>
 
@@ -118,6 +120,7 @@ export default {
             axios.post('http://localhost:3000/api/signup', contact )
                 .then(function (response) {
                     console.log(response);
+                    location.replace("/login");
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -155,12 +158,22 @@ form {
     color: #495057;
     background-color: #fff;
     background-clip: padding-box;
-    border: 4px solid #3896f5;
+    border: 4px solid #122443;
     border-radius: .9rem;
     transition: border-color .50s ease-in-out,box-shadow .50s ease-in-out;
 }
 span {
     background-color: rgb(168, 245, 248);
     color: red;
+}
+.btn {
+        background-color: #122443;
+        color: white;
+    }
+.backHome {
+  height: 25px;
+  background-color: #aeaeae;
+  margin-top: 15px;
+  font-weight: bold;
 }
 </style>

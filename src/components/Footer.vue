@@ -25,7 +25,7 @@ export default {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  background-color: #7cc7c1;
+  background-color: #d1515a9c;
 }
 .footer-item {
   margin-right: 2em;

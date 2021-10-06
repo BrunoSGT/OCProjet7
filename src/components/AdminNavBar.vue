@@ -12,8 +12,14 @@
             <router-link to="/allusers">Tous les Utilisateurs</router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/allPosts">Tous les Posts</router-link>  
+            <router-link to="/allposts">Tous les Posts</router-link>  
           </li> 
+          <!-- <li class="nav-item">
+            <router-link to="/allcommentsvalidated">Tous les Commentaires</router-link>  
+          </li>   
+          <li class="nav-item">
+            <router-link to="/allcomments">Tous les commentaires</router-link>--> <!-- '/allcomments/' + post.id  
+          </li>-->
           <li class="nav-item">
             <router-link to="/logout">Déconnexion</router-link>  
           </li>            
@@ -24,20 +30,32 @@
 </template>
 
 <script>
+import axios from "axios"
 export default {
-    name: "AdminNavBar"
+    name: "AdminNavBar",
+    data() {
+      return {
+          status: "",
+          // visible: true,
+          wallOfPosts: [],
+          showPosts: false
+      }
+    },
+    mounted() {
+      this.status = sessionStorage.getItem('status');
+      axios.get('http://localhost:3000/post/wallOfPosts'//,{headers:{'Authorization': "bearer " + emplacement du token}})
+      )
+      .then(response =>{
+          this.wallOfPosts = response.data;
+          this.status = response.data.status})
+      .catch(error => { console.error(error)});
+    },
 }
 </script>
 
 <style> 
 #nav-brand {
     font-size: 20px;
-}
-.navbar-nav { 
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    background-color: #7cc7c1;
 }
 .nav-item {
     margin-right: 2em;
@@ -48,4 +66,14 @@ export default {
     margin-right: auto;
     margin-left: 2em;
 }  
+/* Ecrans Mobiles */
+/* @media (min-width: 280px) and (max-width: 567px) {
+  footer {
+    height: 100px;
+  }
+
+  .nav-bar {
+    flex-direction: column;
+    font-size: smaller;
+  } */
 </style>

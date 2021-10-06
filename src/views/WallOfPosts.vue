@@ -13,7 +13,7 @@
                 <div class="titlePostBubble" v-bind:href="post.url"> {{ post.title }} </div>  
                 <div class="contentPostBubble">{{ post.content }}, {{ post.id }}, <!--{{ username}},--> {{ post.updatedAt}} 
                     <div class="linkToComment"><router-link :to="'/posttocomment/' + post.id ">Ajouter un commentaire</router-link></div>  
-                    <div class="linkToAllComments"><router-link :to="'/allcomments/' + post.id ">Tous les commentaire</router-link></div>  
+                    <div class="linkToAllComments"><router-link :to="'/allcomments/' + post.id ">Tous les commentaires</router-link></div>  
                 </div>
             </li>
         </ul>
@@ -52,23 +52,34 @@ export default {
 .titlePostBubble {
     margin-top: 25px;
     margin-bottom: 10px;
-    border: 4px solid #e4e723;
-    border-radius: .9rem;
-    box-shadow: 0px 0px 20px #a4a70a;
-    background-color: #fff38a;
+    border: 4px solid #122443a9;
+    border-radius: .3rem;
+    box-shadow: 0px 0px 20px #122443a9;
+    background-color: #122443;
+    color: white;
 }
 .contentPostBubble  {
-    display: flex;
-    flex-direction: row;
-    flex-flow: row wrap;
+    /* display: flex; */
+    /* flex-direction: row; */
+    /* flex-flow: row wrap; */
     flex-basis: 15px;
     width: 50%;
     height: fit-content;
     margin-left: 25%;
-    background-color: #ddffc6;
-    border: 4px solid #98fa3c;
-    border-radius: .9rem;   
-    box-shadow: 0px 0px 20px #709115;
+    background-color: #122443a9;
+    color: white;
+    border: 4px solid #122443a9;
+    border-radius: .3rem;   
+    box-shadow: 0px 0px 20px #122443a9;
     height: 100%;
+}
+.linkToComment{
+    font-weight: bold;
+    margin-top: 6px;
+}
+.linkToAllComments {
+    font-weight: bold;
+    margin-top: 6px;
+    margin-bottom: 10px;
 }
 </style>

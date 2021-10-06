@@ -1,5 +1,6 @@
 <!--Les 4 derniers Posts visibles par les utilisateurs autorisés-->
 <template>
+    <UserConnectedNavBar/>
     <div class="LatestPostsBubbles">
         <ul>
             <li v-for="post in wallOfPosts" :key="post">
@@ -12,7 +13,9 @@
 
 <script>
 import axios from "axios"
+import UserConnectedNavBar from "./UserConnectedNavBar.vue"
 export default {
+    components: {UserConnectedNavBar},
     data() {
         //if(post.updatedAt < post[updatedAt].length){
         //    return wallOfPosts < 5
@@ -37,11 +40,12 @@ export default {
 
 <style lang="scss" scoped>
 .LatestPostsBubbles {
-    display: grid;
-    grid-template-columns: 66vw 33vw;
-    grid-template-rows: repeat (auto-fit, 10vh);
-    grid-column-gap: 2vw;
-    grid-row-gap: 11vh;
+    text-align: center;
+    // display: grid;
+    // grid-template-columns: 66vw 33vw;
+    // grid-template-rows: repeat (auto-fit, 10vh);
+    // grid-column-gap: 2vw;
+    // grid-row-gap: 11vh;
 }
 li {
     margin-bottom: 10px;
@@ -50,16 +54,21 @@ li {
 .titlePostBubble {
     margin-top: 25px;
     margin-bottom: 10px;
-    border: 4px solid #e4e723;
-    border-radius: .9rem;
-    box-shadow: 0px 0px 20px #a4a70a;
-    background-color: #fff38a;
+    border: 4px solid #122443a9;
+    border-radius: .3rem;
+    box-shadow: 0px 0px 20px #122443a9;
+    background-color: #122443;
+    color: white;
 }
 .contentPostBubble { 
-    background-color: #ddffc6;
-    border: 4px solid #98fa3c;
-    border-radius: .9rem;   
-    box-shadow: 0px 0px 20px #709115;
+    width: 50%;
+    height: fit-content;
+    margin-left: 25%;
+    background-color: #122443a9;
+    color: white;
+    border: 4px solid #122443a9;
+    border-radius: .3rem;   
+    box-shadow: 0px 0px 20px #122443a9;
     height: 100%;
 }
 // .LatestPostsBubbles //, .menus__menu2--zoom, .menus__menu3--zoom, .menus__menu4--zoom 
