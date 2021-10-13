@@ -4,13 +4,13 @@
         <div class="form__field--commentBubble">
             <label for="titleBubble"></label>
             <input v-model="title" name="titleBubble" id="titleBubble" data-displayname="Titre du commentaire" class="form-control" required  aria-required="true" type="text">
-            <label for="postBubble"></label>
+            <label for="commentBubble"></label>
             <input v-model="content" name="commentBubble" id="commentBubble" data-displayname="Nouveau commentaire" class="form-control" required  aria-required="true" type="text">
         </div>
-    
+    </form>
     <!-- <input v-model="signature" name="signature" id="signature" aria-required="true" type="text"> -->
     <button @click.prevent="submit"  class="btn btn--submit">Envoyer</button>
-    </form>
+    
 </template>
 
 <script>
@@ -49,14 +49,42 @@ export default {
 
 <style lang="scss">
 
+#Comment-form {
+    margin-left: 25%;
+    margin-top: 20px;
+    border-top: solid;
+    border-top-color: rgb(140, 0, 255);
+    border-top-width: 10px;
+    border-top-left-radius: 1.5em ;
+    border-top-right-radius: 1.5em;  
+
+    border-bottom-style: solid;
+    border-top-color: rgb(140, 0, 255);
+    border-bottom-width: 10px;
+    border-bottom-left-radius: 1.5em ;
+    border-bottom-right-radius: 1.5em;
+}
+
+#titleBubble {
+    background-color: #122443;
+    color: white;
+    margin-bottom: 10px;
+    width: 100%;
+}
 #commentBubble  {
     display: flex;
-    width: 50%;
+    flex-direction: row;
+    flex-flow: row wrap;
+    flex-basis: 15px;
+    width: 100%;
     height: fit-content;
-    margin-left: 25%;
-    background-color: #f5bcef;
+    background-color: #122443b5;
+    color: white;
+}
+
+
        
 
-}
+
 
 </style>

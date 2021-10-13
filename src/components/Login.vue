@@ -18,7 +18,7 @@
         </div>
         <div id="connexion">
             <button @click.prevent="submit" class="btn btn--submit">Se connecter</button>
-            <router-link to="/admin"></router-link>
+            <router-link to="/accueil"></router-link>
         </div>
     </form>
 </template>
@@ -51,7 +51,7 @@
                     sessionStorage.setItem("status", response.data.status);
                     sessionStorage.setItem("user_id", response.data.userId);
                     sessionStorage.setItem("token", response.data.token);
-                    location.replace("#/admin");
+                    location.replace("#/accueil");
                     
                 })
                 .catch(function (error) {

@@ -9,7 +9,7 @@
             <li> 
                 <div class="usersList" v-bind:href="user.url"> {{ user.id }}  : {{ user.firstname }}, {{ user.lastname }}
                 </div>
-                <input type="checkbox" :id="'checkUser_'+String (user.id)" v-model=user.status
+                <input type="checkbox" :id="'checkUser_'+String (user.id)" v-model=user.status true-value=1 false-value=0
                 @click="submit(user.id, user.status)">  <!--, user.visible-->
                 <label :for="'checkUser_'+String (user.id)">{{user.status}}Utilisateur visible</label>
             </li>
@@ -60,11 +60,21 @@ export default {
 </script>
 
 <style scoped lang="scss">
-#allUsers {
-    background-color: #aeaeae52;
+#allUsers ul {
+    list-style-type: none;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
 }
+
+// #allUsers {
+//     background-color: #aeaeae52;
+// }
 .usersList {
     background-color: #122443;
     color: white;
+    padding: 10px;
+    border-top-left-radius: 15px; 
+    border-top-right-radius: 15px;
 }
 </style>

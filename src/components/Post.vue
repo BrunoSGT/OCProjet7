@@ -7,9 +7,9 @@
             </p>
         <div class="form__field--postBubble">
             <label for="titlePostBubble"></label>
-            <input v-model="title" name="titlePostBubble" id="titlePostBubble" data-displayname="Titre du post" class="form-control" required  aria-required="true" type="text">
+            <input v-model="title" name="titlePostBubble" id="titlePostBubble" data-displayname="Titre du post" class="form-control" required  aria-required="true" type="text" placeholder="titre de votre post">
             <label for="contentPostBubble"></label>
-            <input v-model="content" name="contentPostBubble" id="contentPostBubble" data-displayname="Nouveau post" class="form-control" required  aria-required="true" type="text">
+            <input v-model="content" name="contentPostBubble" id="contentPostBubble" data-displayname="Nouveau post" class="form-control" required  aria-required="true" type="text" placeholder="texte de votre post">
         </div>
     
     <!-- <input v-model="signature" name="signature" id="signature" aria-required="true" type="text"> -->
@@ -72,14 +72,13 @@ export default {
 <style lang="scss">
 
 #titlePostBubble {
-    display: inline;
-    height: auto;
     margin-top: 25px;
     margin-bottom: 10px;
-    border: 4px solid #e4e723;
-    border-radius: .9rem;
-    box-shadow: 0px 0px 20px #a4a70a;
-    background-color: #fff38a;
+    border: 4px solid #122443a9;
+    border-radius: .3rem;
+    box-shadow: 0px 0px 20px #122443a9;
+    background-color: white;
+    color: #122443;
 }
 #contentPostBubble  {
     display: flex;
@@ -89,17 +88,13 @@ export default {
     width: 50%;
     height: fit-content;
     margin-left: 25%;
-    background-color: #ddffc6;
-    border: 4px solid #98fa3c;
-    border-radius: .9rem;   
-    box-shadow: 0px 0px 20px #709115;
+    margin-bottom: 20px;
+    border: 4px solid #122443a9;
+    border-radius: .3rem;
+    box-shadow: 0px 0px 20px #122443a9;
+    background-color: white;
+    color: #122443;
     height: 100%;
 }
-.contentPostBubble {
-        flex: 1 1 160px;
-    }
-       
-
-
 
 </style>

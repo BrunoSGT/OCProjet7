@@ -52,6 +52,7 @@ li {
     margin-left: 2em;
 }
 .titlePostBubble {
+    width: 50%;
     margin-top: 25px;
     margin-bottom: 10px;
     border: 4px solid #122443a9;
@@ -61,7 +62,6 @@ li {
     color: white;
 }
 .contentPostBubble { 
-    width: 50%;
     height: fit-content;
     margin-left: 25%;
     background-color: #122443a9;
@@ -71,11 +71,7 @@ li {
     box-shadow: 0px 0px 20px #122443a9;
     height: 100%;
 }
-// .LatestPostsBubbles //, .menus__menu2--zoom, .menus__menu3--zoom, .menus__menu4--zoom 
-// {
-//   transform: scale(1);
-//   transition: transform 600ms, opacity 1000ms;
-// }
+
 .contentPostBubble:hover {
     transform: scale(1.1);
     transition: transform 500ms; 

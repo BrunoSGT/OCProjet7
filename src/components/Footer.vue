@@ -18,6 +18,11 @@ export default {
 </script>
 
 <style> 
+
+ul {
+    list-style-type: none;
+}
+
 .container-fluid {
   display: block;
 }
@@ -26,6 +31,8 @@ export default {
   justify-content: flex-end;
   align-items: center;
   background-color: #d1515a9c;
+  padding: 15px;
+  margin-block-end: 0;
 }
 .footer-item {
   margin-right: 2em;

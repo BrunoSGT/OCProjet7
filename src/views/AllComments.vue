@@ -15,8 +15,7 @@
     </div>
     <div class="allCommentsBubbles">
         <ul>
-            <li v-for="comment in allComments" :key="comment">  comment.visible
-            
+            <li v-for="comment in allComments" :key="comment">  comment.visible ou presque
                 <div class="titleCommentBubble" > {{ comment.title }} </div>  
                 <div class="contentCommentBubble"> {{ comment.content }}, {{ comment.updatedAt}} </div>
             </li>
@@ -34,11 +33,10 @@ export default {
         return {
             posts: [],
             allComments: [],
-            // visible: true
         }
     },
     mounted() {
-        axios.get('http://localhost:3000/post/'+ this.$route.params.id//,{headers:{'Authorization': "bearer " + emplacement du token}})
+        axios.get('http://localhost:3000/post/'+ this.$route.params.id//,{headers:{'Authorization': "bearer " + token}})
         )
         .then(response =>{
             // console.log(this.posts)
@@ -47,14 +45,14 @@ export default {
         .catch(error => { console.error(error)});
 
         // récupère le commantaires liés à un post
-        axios.get('http://localhost:3000/comment/'+ this.$route.params.id//,{headers:{'Authorization': "bearer " + emplacement du token}})
+        axios.get('http://localhost:3000/comment/allCommentsForOnePost/'+this.$route.params.id//,{headers:{'Authorization': "bearer " + token}})
         )
         .then(response =>{
             this.allComments = response.data;
-            console.log(this.allComments)  })
-            // console.log(this.visible)})
-            // this.visible = response.data.visible})
+            console.log(this.allComments)  
+            this.visible = response.data.visible})
         .catch(error => { console.error(error)});
     } 
 }
-</script> 
+</script>  
+

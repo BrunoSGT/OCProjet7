@@ -4,7 +4,7 @@ import Home from '../views/Home.vue'
 // import Admin from '../views/Admin.vue'
 import Post from '../views/Post.vue'
 import PostToComment from '../views/PostToComment.vue'
-import AllComments from '../components/AllComments.vue'
+
 const routes = [
   {
     path: '/',
@@ -35,9 +35,9 @@ const routes = [
     component: () => import(  '../views/Signup.vue')
   },
   {
-    path: '/admin',
-    name: 'Admin',
-    component: () => import('../views/Admin.vue')
+    path: '/accueil',
+    name: 'Accueil',
+    component: () => import('../views/Accueil.vue')
   },
   // {
   //   path: '/userconnectednavbar',
@@ -75,19 +75,20 @@ const routes = [
     component: PostToComment
   },
   {
-    path: '/allcomments',
+    path: '/allcommentsbypost',
+    name: 'AllCommentsByPost',
+    component: () => import('../views/AllCommentsByPost.vue')
+  },
+  
+  {
+    path: '/allcomments/:id',
     name: 'AllComments',
-    component: AllComments
+    component: () => import('../views/AllComments.vue')
   },
   {
     path: '/userprofile',
     name: 'UserProfile',
     component: () => import('../components/UserProfile.vue')
-  },
-  {
-    path: '/allcomments/:id',
-    name: 'AllComments',
-    component: () => import('../views/AllComments.vue')
   },
 ]
 

@@ -3,15 +3,16 @@
         <UserConnectedNavBar/>
     </div>
     <a>barre de recherche</a>
-    <div class="PostsBubbles">
+    <div class="PostBubbles">
         <ul>
             <li>
                 <div class="titlePostBubble" > {{ posts.title }} </div>  
                 <div class="contentPostBubble">{{ posts.content }}, {{ posts.updatedAt}} </div>
-                <Comment/>
             </li>
         </ul>
-        
+    </div>
+    <div class="CommentBubbles">
+        <Comment/>
     </div>
 </template>
 
@@ -45,26 +46,42 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.PostBubbles {
+    margin-top: 20px;
+    margin-right: 25%;
+    border-top: solid;
+    border-top-color: red;
+    border-top-width: 10px;
+    border-top-left-radius: 1.5em ;
+    border-top-right-radius: 1.5em;  
+
+    border-bottom-style: solid;
+    border-bottom-color: red;
+    border-bottom-width: 10px;
+    border-bottom-left-radius: 1.5em ;
+    border-bottom-right-radius: 1.5em;
+
+}
+
 .titlePostBubble {
-    margin-top: 25px;
+    background-color: #122443;
+    color: white;
     margin-bottom: 10px;
-    border: 4px solid #e4e723;
-    border-radius: .9rem;
-    box-shadow: 0px 0px 20px #a4a70a;
-    background-color: #fff38a;
+    
+    
 }
 .contentPostBubble  {
     display: flex;
     flex-direction: row;
     flex-flow: row wrap;
     flex-basis: 15px;
-    width: 50%;
     height: fit-content;
-    margin-left: 25%;
-    background-color: #ddffc6;
-    border: 4px solid #98fa3c;
-    border-radius: .9rem;   
-    box-shadow: 0px 0px 20px #709115;
-    height: 100%;
+    background-color: #122443b5;
+    color: white;
+    
 }
+
+
+
 </style>

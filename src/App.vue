@@ -17,23 +17,28 @@ export default{
 
 <style lang="scss">
 body {
-    background-image: url("../src/assets/Tour_Eiffel_sepia.jpeg");
-    background-attachment:fixed;
-    font-family: system-ui, system-ui, sans-serif;
-    background-color: #E6E6E6;
-    color: #101010;
-    text-align: center;
-    // height: 750px;
-
+  background-image: url("../src/assets/Tour_Eiffel_sepia.jpeg");
+  background-attachment:fixed;
+  // background-repeat: no-repeat;
+  //background-size: 100%;
+  font-family: system-ui, system-ui, sans-serif;
+  background-color: #E6E6E6;
+  color: #101010;
+  text-align: center;
+  margin: 0;
+  padding: 0;
 }
 a {
   text-decoration: none;
+}
+a:hover {
+  color: #800000;
+  text-decoration: underline;
 }
 .logo {
   background-color: #122443;
   color: white;
   font-size: 15px;
-  width: 100%;
   padding: 15px;
 }
 

@@ -3,21 +3,21 @@
   <div v-if="this.status == 2">
     <AdminNavBar/>
     <div id="accueilAdmin">
-      <p> Derniers posts </p>
+      <p> Espace administrateur </p>
     </div>
   </div> 
   <div v-else>
-    <UserConnectedNavBar/>
+    <LatestsPosts/>
   </div>
   <router-view/>
 </template>
 
 <script>
 import AdminNavBar from "@/components/AdminNavBar";
-import UserConnectedNavBar from "@/components/UserConnectedNavBar";
+import LatestsPosts from "@/components/LatestsPosts";
 export default{
-  name: "Admin",   //"App"
-  components: {AdminNavBar, UserConnectedNavBar},
+  name: "Accueil",   //"App"
+  components: {AdminNavBar, LatestsPosts},
   data() {
         return{ 
             status: ""

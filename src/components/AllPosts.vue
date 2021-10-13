@@ -5,7 +5,7 @@
     <a>barre de recherche</a>
     <div class="allPostsBubbles">
         <ul>
-            <li v-for="post in allPosts" :key="post">
+            <li class="postContainer" v-for="post in allPosts" :key="post">
                 <div class="titlePostBubble" v-bind:href="post.url"> {{ post.title }} 
                 </div>  
                 <div class="contentPostBubble">{{ post.content }}, {{ post.id }}, {{ post.username }},{{ post.updatedAt }} 
@@ -67,16 +67,35 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.allPostsBubbles ul {
+    list-style-type: none;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
 .titlePostBubble {
-  background-color: #122443;
-  color: white;
+   background-color: #122443;
+    color: white;
+    padding: 10px;
+    border-top-left-radius: 15px; 
+    border-top-right-radius: 15px;
 }
 .contentPostBubble {
   background-color: #122443b5;
-  color: white;
+    color: white;
+    padding: 20px;
+    display: block;
+    text-align: left;
+    word-wrap: break-word;
+    border-bottom-left-radius: 15px; 
+    border-bottom-right-radius: 15px;
 }
 .setPostVisible {
-    background-color: #aeaeae52;
-    margin-bottom: 6px;
+    color: black;
+    margin-top: 10px;
+    margin-bottom: 25px;
+}
+.postContainer {
+    opacity: 0.8;
 }
 </style>
