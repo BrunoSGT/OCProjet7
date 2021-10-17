@@ -4,7 +4,7 @@
       <div id="nav-brand">Groupomania-Chat'Group</div>
       <div>
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
-          <li class="nav-item">
+          <li class="nav-item__logo">
             <router-link to="/"><img src="../assets/icon-left-font-monochrome-black-redux.png"  alt="logo Groupomania pour ramener à la page d'accueil">
             </router-link>
           </li>
@@ -57,4 +57,29 @@ export default {
   margin-right: auto;
   margin-left: 2em;
 }  
+/* Ecrans Tablettes */
+
+@media (min-width: 882px) and (max-width: 1023px) {  
+  .nav-item {
+      padding: 0.5em;
+      margin-left: 2em;
+    }
+}
+  /* Ecrans Mobiles */
+  @media (min-width: 280px) and (max-width: 881px) { 
+    .navbar-nav {
+      flex-direction: column;
+      font-size: small;
+    }
+    .nav-item {
+      padding: 0.5em;
+      margin-left: 2em;
+    }
+    .nav-item__logo {
+      margin-left: auto;
+    }
+    #allUsers {
+      margin-right: 50px;
+    }
+  }
 </style>

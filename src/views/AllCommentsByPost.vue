@@ -15,19 +15,22 @@
         <div class="allCommentsBubbles">
             <ul>
                 <li class="commentContainer" v-for="comment in allComments" :key="comment" >
-                    <div v-if="comment.postId === post.id">
+                    <div v-if="comment.postId === post.id && comment.id != 0">
                         <div class="titleCommentBubble" v-bind:href="comment.url"> {{ comment.title }} </div>  
                         <div class="contentCommentBubble"> {{ comment.content }}, {{ comment.updatedAt}} </div>
                         <div class="setCommentVisible">
                             <input type="checkbox" :id="'checkComment_'+String (comment.id)"  v-model=comment.visible
                             @click="submit(comment.id, comment.visible)">
-                            <label :for="'checkComment_'+String (comment.id)">{{comment.visible}}Comment visible</label>
+                            <label :for="'checkComment_'+String (comment.id)">Comment visible</label>
                         </div>
                     </div>
                 </li>
             </ul>
         </div>
-    </div> 
+        <section class="separation">
+            <div class="suivant">Suivant ...</div>
+        </section>
+    </div>
 </template>
 
 <script>
@@ -82,12 +85,34 @@ export default {
 }
 </script>  
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
+.PostsBubbles ul {
+    margin-right: 2em;
+}
+.titlePostBubble {
+    background-color: #122443;
+    color: white;
+    padding: 10px;
+    border-top-left-radius: 15px; 
+    border-top-right-radius: 15px;
+}
+.contentPostBubble  {
+    background-color: #122443b5;
+    color: white;
+    padding: 20px;
+    display: block;
+    text-align: left;
+    word-wrap: break-word;
+    border-bottom-left-radius: 15px; 
+    border-bottom-right-radius: 15px;
+}
+
 .allCommentsBubbles ul {
     list-style-type: none;
     width: 50%;
     margin-left: auto;
     margin-right: auto;
+    padding-left: 0;
 }
 .commentContainer {
     opacity: 0.8;
@@ -114,4 +139,18 @@ export default {
     margin-top: 10px;
     margin-bottom: 25px;
 }
+.separation {
+    font-weight: bold;
+    border-bottom-style: solid;
+    background-color: #d1515a9c;
+    color: #122443b5;
+    font-size: large;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2em;
+    border-radius: 9px;
+    margin-bottom: 5vh;
+}
+
 </style>

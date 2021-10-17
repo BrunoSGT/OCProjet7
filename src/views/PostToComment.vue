@@ -2,7 +2,6 @@
     <div>
         <UserConnectedNavBar/>
     </div>
-    <a>barre de recherche</a>
     <div class="PostBubbles">
         <ul>
             <li>
@@ -11,7 +10,8 @@
             </li>
         </ul>
     </div>
-    <div class="CommentBubbles">
+    <p>Ajoutez un commentaire ! 😄</p>
+    <div class="commentBubbles">
         <Comment/>
     </div>
 </template>
@@ -29,11 +29,11 @@ export default {
             posts: [],
             showPosts: false,
             comments: []
-            // showUsers: false
         }
     },
     mounted() {
-        axios.get('http://localhost:3000/post/'+ this.$route.params.id//,{headers:{'Authorization': "bearer " + emplacement du token}})
+        const token= JSON.stringify(sessionStorage.getItem('token')); //jeton
+        axios.get('http://localhost:3000/post/'+ this.$route.params.id, {headers:{'Authorization': "bearer " + token}}
         )
         .then(response =>{
             this.posts = response.data;
@@ -47,38 +47,29 @@ export default {
 
 <style lang="scss" scoped>
 
-.PostBubbles {
-    margin-top: 20px;
+.PostBubbles li {
+    margin-top: 25px;
     margin-right: 25%;
-    border-top: solid;
-    border-top-color: red;
-    border-top-width: 10px;
-    border-top-left-radius: 1.5em ;
-    border-top-right-radius: 1.5em;  
-
-    border-bottom-style: solid;
-    border-bottom-color: red;
-    border-bottom-width: 10px;
-    border-bottom-left-radius: 1.5em ;
-    border-bottom-right-radius: 1.5em;
-
+    margin-bottom: 20px;
+    margin-left: 5%;
+    opacity: 0.8;
 }
-
 .titlePostBubble {
     background-color: #122443;
     color: white;
-    margin-bottom: 10px;
-    
-    
+    padding: 10px;
+    border-top-left-radius: 15px; 
+    border-top-right-radius: 15px;
 }
 .contentPostBubble  {
-    display: flex;
-    flex-direction: row;
-    flex-flow: row wrap;
-    flex-basis: 15px;
-    height: fit-content;
     background-color: #122443b5;
     color: white;
+    padding: 20px;
+    display: block;
+    text-align: left;
+    word-wrap: break-word;
+    border-bottom-left-radius: 15px; 
+    border-bottom-right-radius: 15px;
     
 }
 

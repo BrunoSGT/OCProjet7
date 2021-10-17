@@ -13,7 +13,7 @@
                 <div class="setPostVisible">
                     <input type="checkbox" :id="'checkPost_'+String (post.id)"  v-model=post.visible
                     @click="submit(post.id, post.visible)">
-                    <label :for="'checkPost_'+String (post.id)">{{post.visible}}Post visible</label>
+                    <label :for="'checkPost_'+String (post.id)">Post visible</label>
 
                 </div>
             </li>
@@ -72,6 +72,7 @@ export default {
     width: 50%;
     margin-left: auto;
     margin-right: auto;
+    padding-left: 0;
 }
 .titlePostBubble {
    background-color: #122443;

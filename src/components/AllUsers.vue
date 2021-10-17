@@ -7,11 +7,13 @@
     <div id="allUsers" v-for="user in allUsers" :key="user">
         <ul>
             <li> 
-                <div class="usersList" v-bind:href="user.url"> {{ user.id }}  : {{ user.firstname }}, {{ user.lastname }}
+                <div class="usersList" v-bind:href="user.url"> utilisateur {{  user.id }} <br> {{ user.firstname }}, {{ user.lastname }}
                 </div>
-                <input type="checkbox" :id="'checkUser_'+String (user.id)" v-model=user.status true-value=1 false-value=0
-                @click="submit(user.id, user.status)">  <!--, user.visible-->
-                <label :for="'checkUser_'+String (user.id)">{{user.status}}Utilisateur visible</label>
+                <div class="setUserVisible">
+                    <input type="checkbox" :id="'checkUser_'+String (user.id)" v-model=user.status true-value=1 false-value=0
+                    @click="submit(user.id, user.status)">
+                    <label :for="'checkUser_'+String (user.id)">Utilisateur visible</label>
+                </div>
             </li>
         </ul>
     </div> 
@@ -60,6 +62,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
+#allUsers {
+    opacity: 0.8;
+}
+
 #allUsers ul {
     list-style-type: none;
     width: 50%;
@@ -74,7 +81,12 @@ export default {
     background-color: #122443;
     color: white;
     padding: 10px;
-    border-top-left-radius: 15px; 
-    border-top-right-radius: 15px;
+    border-radius: 15px;
 }
+.setUserVisible {
+    color: black;
+    margin-top: 10px;
+    margin-bottom: 25px;
+}
+
 </style>

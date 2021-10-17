@@ -1,15 +1,13 @@
 <template>
-    
-    <form id="Comment-form">
+    <form id="commentForm">
         <div class="form__field--commentBubble">
             <label for="titleBubble"></label>
-            <input v-model="title" name="titleBubble" id="titleBubble" data-displayname="Titre du commentaire" class="form-control" required  aria-required="true" type="text">
+            <input v-model="title" name="titleBubble" id="titleBubble" data-displayname="Titre du commentaire" class="form-control" required  aria-required="true" type="text" placeholder="titre du commentaire (limité à 45 caractères)">
             <label for="commentBubble"></label>
-            <input v-model="content" name="commentBubble" id="commentBubble" data-displayname="Nouveau commentaire" class="form-control" required  aria-required="true" type="text">
+            <textarea v-model="content" name="commentBubble" id="commentBubble" data-displayname="Nouveau commentaire" class="form-control" required  aria-required="true" type="text" placeholder="texte du commentaire (limité à 255 caractères)"></textarea>
         </div>
     </form>
-    <!-- <input v-model="signature" name="signature" id="signature" aria-required="true" type="text"> -->
-    <button @click.prevent="submit"  class="btn btn--submit">Envoyer</button>
+    <button type="button" @click.prevent="submit"  class="btn btn--submit">Envoyer</button>
     
 </template>
 
@@ -22,22 +20,25 @@ export default {
     data() {
         return{ 
             title: "",
-            content: ""
+            content: "",
+            user_id: sessionStorage.getItem('user_id')
         }
     },
     // methode de récupération des valeurs saisies et envoi à la DB
     methods: {
         submit: function () { // eslint-disable-line no-unused-vars
+        const token= JSON.stringify(sessionStorage.getItem('token')); //jeton
         console.log(this.title + this.content )
-            axios.post('http://localhost:3000/comment/', {
+            axios.post('http://localhost:3000/comment/', {headers:{'Authorization': "bearer " + token},
                 "title": this.title,
                 "content": this.content,
                 "postId": this.$route.params.id,
-                // "userId": this.$route.params.user_id
+                "userId": this.user_id
             })
             
         .then(function (response) {
         console.log(response);
+        location.reload();
         })
         .catch(function (error) {
         console.log(error);
@@ -47,39 +48,45 @@ export default {
 }   // fonction de récup + assign valeur à la variable message (this.message)+ mounted (get)
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
-#Comment-form {
+#commentForm {
+    margin-top: 25px;
+    opacity: 0.8;
+}
+.form__field--commentBubble {
+    border: 4px solid #122443;
+    background-color: #122443b5;
+    border-radius: 15px;
     margin-left: 25%;
-    margin-top: 20px;
-    border-top: solid;
-    border-top-color: rgb(140, 0, 255);
-    border-top-width: 10px;
-    border-top-left-radius: 1.5em ;
-    border-top-right-radius: 1.5em;  
+    margin-bottom: 20px;
+    margin-right: 5%;
 
-    border-bottom-style: solid;
-    border-top-color: rgb(140, 0, 255);
-    border-bottom-width: 10px;
-    border-bottom-left-radius: 1.5em ;
-    border-bottom-right-radius: 1.5em;
 }
 
 #titleBubble {
-    background-color: #122443;
-    color: white;
+    width: 50%;
+    margin-top: 25px;
     margin-bottom: 10px;
-    width: 100%;
+    border: 4px solid #122443a9;
+    border-radius: .3rem;
+    box-shadow: 0px 0px 20px #122443a9;
+    background-color: white;
+    font-family: system-ui, system-ui, sans-serif;
+    font-size: 14px;
+    color: #122443;
+    padding-bottom: 0.3em;
 }
 #commentBubble  {
-    display: flex;
-    flex-direction: row;
-    flex-flow: row wrap;
-    flex-basis: 15px;
-    width: 100%;
-    height: fit-content;
-    background-color: #122443b5;
-    color: white;
+    width: 90%;
+    margin-bottom: 20px;
+    border: 4px solid #122443a9;
+    border-radius: .3rem;
+    box-shadow: 0px 0px 20px #122443a9;
+    background-color: white;
+    font-family: system-ui, system-ui, sans-serif;
+    font-size: 14px;
+    color: #122443;
 }
 
 

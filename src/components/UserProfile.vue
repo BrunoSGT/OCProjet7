@@ -1,10 +1,10 @@
 <template>
-    <p>Mon Profil</p>
     <div>
       <UserConnectedNavBar/>
     </div>
+    <h1>Mon profil</h1>
     <section id="photo">
-    <input type="file" accept="image/*" @change="uploadImage($event)" id="file-imput">
+    <input type="file" accept="image/*" @change="uploadImage($event)" id="file-imput" placeholder="Photo">
     <button mat-raised-button @click="imageInput.click()">Ajouter une image</button> <!--color="primary"-->
     </section>
     <section id="userDescription">
@@ -38,7 +38,7 @@ export default {
         }
     },
     mounted() {
-        // const token= JSON.stringify(sessionStorage.getItem('token')); //jeton
+        const token= JSON.stringify(sessionStorage.getItem('token')); //jeton
         axios.get('http://localhost:3000/api/user/'+ sessionStorage.getItem('user_id'),{headers:{"Authorization": "Bearer " + token}})
         
         .then(response =>{
@@ -50,7 +50,7 @@ export default {
 
     
     uploadImage(event) {
-        const URL = 'http://localhost:3000/api/user/ajoutPhoto';
+        const URL = 'http://localhost:3000/api/user/addUserPhoto';
 
         let data = new FormData;
         data.append('name', 'my-picture');

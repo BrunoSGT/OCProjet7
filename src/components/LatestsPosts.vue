@@ -1,9 +1,10 @@
 <!--Les 4 derniers Posts visibles par les utilisateurs autorisés-->
 <template>
     <UserConnectedNavBar/>
+    <h1>Derniers posts</h1>
     <div class="LatestPostsBubbles">
         <ul>
-            <li v-for="post in wallOfPosts" :key="post">
+            <li class="postsContainer" v-for="post in wallOfPosts" :key="post">
                 <div class="titlePostBubble" v-bind:href="post.url"> {{ post.title }} </div>  
                 <div class="contentPostBubble">{{ post.content }}, {{ post.updatedAt}} </div>
             </li>
@@ -39,6 +40,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.postsContainer {
+    opacity: 0.8;
+}
 .LatestPostsBubbles {
     text-align: center;
     // display: grid;
@@ -64,6 +69,7 @@ li {
 .contentPostBubble { 
     height: fit-content;
     margin-left: 25%;
+    margin-right: 10%;
     background-color: #122443a9;
     color: white;
     border: 4px solid #122443a9;
@@ -73,7 +79,7 @@ li {
 }
 
 .contentPostBubble:hover {
-    transform: scale(1.1);
+    transform: scale(1.15);
     transition: transform 500ms; 
 }
 

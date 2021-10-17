@@ -6,10 +6,9 @@
     <div id="wallOfPosts">
         <h1>Le mur des posts</h1>
     </div>
-    <a>barre de recherche</a>
     <div class="allPostsBubbles">
         <ul>
-            <li v-for="post in wallOfPosts" :key="post.visible">
+            <li class="postsContainer" v-for="post in wallOfPosts" :key="post.visible">
                 <div class="titlePostBubble" v-bind:href="post.url"> {{ post.title }} </div>  
                 <div class="contentPostBubble">{{ post.content }}, {{ post.id }}, <!--{{ username}},--> {{ post.updatedAt}} 
                     <div class="linkToComment"><router-link :to="'/posttocomment/' + post.id ">Ajouter un commentaire</router-link></div>  
@@ -38,7 +37,8 @@ export default {
     },
     mounted() {
         this.status = sessionStorage.getItem('status');
-        axios.get('http://localhost:3000/post/wallOfPosts'//,{headers:{'Authorization': "bearer " + emplacement du token}})
+        const token= JSON.stringify(sessionStorage.getItem('token')); //jeton
+        axios.get('http://localhost:3000/post/wallOfPosts',{headers:{'Authorization': "bearer " + token}}
         )
         .then(response =>{
             this.wallOfPosts = response.data;
@@ -48,7 +48,13 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+.allPostsBubbles ul {
+    padding: 0;
+}
+.postsContainer {
+    opacity: 0.8;
+}
 .titlePostBubble {
     margin-top: 25px;
     margin-bottom: 10px;
@@ -59,9 +65,6 @@ export default {
     color: white;
 }
 .contentPostBubble  {
-    /* display: flex; */
-    /* flex-direction: row; */
-    /* flex-flow: row wrap; */
     flex-basis: 15px;
     width: 50%;
     height: fit-content;
@@ -73,15 +76,23 @@ export default {
     box-shadow: 0px 0px 20px #122443a9;
     height: 100%;
 }
+.contentPostBubble:hover {
+    transform: scale(1.15);
+    transition: transform 500ms; 
+}
 .linkToComment{
     font-weight: bold;
     margin-top: 6px;
-
+}
+.linkToComment a {
+    color: white;
 }
 .linkToAllComments {
     font-weight: bold;
     margin-top: 6px;
     margin-bottom: 10px;
-
+}
+.linkToAllComments a {
+    color: white;
 }
 </style>
