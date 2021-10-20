@@ -18,18 +18,15 @@ import UserConnectedNavBar from "./UserConnectedNavBar.vue"
 export default {
     components: {UserConnectedNavBar},
     data() {
-        //if(post.updatedAt < post[updatedAt].length){
-        //    return wallOfPosts < 5
-        //}
-                
-    return {
+        return {
             wallOfPosts: [],
             showPosts: false //true 
         }
     },
         
     mounted() {
-        axios.get('http://localhost:3000/post/latestsposts')//,{headers:{'Authorization': "bearer " + emplacement du token}})
+        const token= JSON.stringify(sessionStorage.getItem('token')); //jeton
+        axios.get('http://localhost:3000/post/latestsposts',{headers:{'Authorization': "bearer " + token}})
         
         .then(response =>{
             this.wallOfPosts = response.data })
@@ -46,11 +43,6 @@ export default {
 }
 .LatestPostsBubbles {
     text-align: center;
-    // display: grid;
-    // grid-template-columns: 66vw 33vw;
-    // grid-template-rows: repeat (auto-fit, 10vh);
-    // grid-column-gap: 2vw;
-    // grid-row-gap: 11vh;
 }
 li {
     margin-bottom: 10px;
@@ -84,36 +76,3 @@ li {
 }
 
 </style>
-
-
-
-
-
-
-<!--<template>
-    <div id="TeasersOfPosts"> 
-        <h1>Le mur des posts</h1>
-    </div>
-    <div class="allPostsBubbles">
-        <ul>
-            <li v-for="post in wallOfPosts" :key="post.id">
-                
-                <a v-bind:href="post.url"> {{ post.title }} </a> : {{ post.content }}, {{ post.id }}, {{ post.updatedAt }}
-
-            </li>
-        </ul>
-    </div>
-    <button @click="showPosts">Afficher tous les posts</button>
-</template>
-// <script>
-// export default {
-//     name: 'TeasersOfPosts',
-//     props: {
-//         msg: String
-//     }
-// }
-// //    for (let i = 0; i < colors.length; i++) 
-// let LatestPostsBubbles = post.id
-// for (let i = 0; i < id.length; i++ < 5 )
-
-// </script> -->

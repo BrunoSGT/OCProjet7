@@ -63,6 +63,7 @@
 
 .navbar-nav{
   padding: 15px;
+  margin-bottom: 2em;
 }
   .nav-item {
     margin-right: 2em;

@@ -1,6 +1,7 @@
 <template>
   <header class="logo">
     <img src="../src/assets/icon-left-font-monochrome-white-redux.png" style="width: 50%; heigth: 50%" alt="logo Groupomania">
+    
   </header>
   <router-view/>
   <footer>

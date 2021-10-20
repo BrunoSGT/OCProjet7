@@ -1,6 +1,5 @@
 <template>
     <AdminNavBar/>
-    <a>barre de recherche</a>
     <div class="containerAll" v-for="post in posts" :key="post" >
 
         <div class="PostsBubbles">
@@ -49,7 +48,6 @@ export default {
         axios.get('http://localhost:3000/post'//,{headers:{'Authorization': "bearer " + token}}
         )
         .then(response =>{
-            console.log(this.posts)
             this.posts = response.data})
             
         .catch(error => { console.error(error)});
@@ -58,7 +56,6 @@ export default {
         axios.get('http://localhost:3000/comment'//,{headers:{'Authorization': "bearer " + token}}
         )
         .then(response =>{
-            console.log(this.allComments)
             this.allComments = response.data;})
               
         .catch(error => { console.error(error)});

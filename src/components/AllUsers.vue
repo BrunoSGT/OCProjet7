@@ -3,7 +3,6 @@
     <div>
         <AdminNavBar/>   
     </div> 
-    <a>barre de recherche</a>
     <div id="allUsers" v-for="user in allUsers" :key="user">
         <ul>
             <li> 
