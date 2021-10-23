@@ -21,6 +21,7 @@ export default {
 
 ul {
     list-style-type: none;
+    margin-top: 0;
 }
 
 .container-fluid {

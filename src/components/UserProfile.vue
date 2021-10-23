@@ -4,19 +4,23 @@
     </div>
     <h1>Mon profil</h1>
     <section id="photo">
-    <input type="file" accept="image/*" @change="uploadImage($event)" id="file-imput" placeholder="Photo">
-    <button mat-raised-button @click="imageInput.click()">Ajouter une image</button> <!--color="primary"-->
+        <div class=" boxPhotoProfile">
+            <input type="file" accept="image/*" @change="handleFiles()" name="uploadFile" id="uploadFile" placeholder="Photo">
+        </div>
+        <div id="previewSettings"></div>
+        <input type="submit" name="" value="Ajouter ma photo" @click="envoiModifPhotoProfil">
+    <!--<button class="btn_submit" @click="uploadImage($event)">Ajouter une image</button> -->
     </section>
     <section id="userDescription">
-        <div class="userInfos" v-bind:href="user.url"> {{ user.id }}, {{ user.firstname }}, {{ user.lastname }}
+        <div class="userInfos"> {{ user.id }} <br> {{ user.firstname }}, {{ user.lastname }}
         </div>
     </section>
     <section id="deleteProfile">
         <p>Etes-vous sûr de vouloir vous effacer votre profil?😟</p>
-    <button v-on:click="deleteUser(), logout">Supprimer mon profil</button>
+    <button class="btn_submit" v-on:click="deleteUser()">Supprimer mon profil</button>
     </section>    
   
-</template>
+</template> 
 
 <script>
 // @ is an alias to /src
@@ -38,71 +42,140 @@ export default {
         }
     },
     mounted() {
-        const token= JSON.stringify(sessionStorage.getItem('token')); //jeton
         axios.get('http://localhost:3000/api/user/'+ sessionStorage.getItem('user_id'),{headers:{"Authorization": "Bearer " + token}})
         
         .then(response =>{
             console.log(response),
-            this.user = response.data })
+            this.user = response.data 
+            console.log(this.user)})
         
         .catch(error => { console.error(error)});
     },
 
-    
-    uploadImage(event) {
-        const URL = 'http://localhost:3000/api/user/addUserPhoto';
-
-        let data = new FormData;
-        data.append('name', 'my-picture');
-        data.append('file', event.target.files[0]);
-
-        let config = {
-            header : {
-                'Content-Type' : 'image/png'
-            }
-        }
-        axios.put(
-            URL,
-            data,
-            config
-        ).then(
-            response => {
-                console.log('image upload response > ', response)
-            }
-        )
-    },
-
     methods: {
+        handleFiles(){ // Cette fonction permet d'avoir une miniature des fichiers qui vont être uploadés même si ils ne possèdent pas encore d'URLs
+            document.getElementById("previewSettings").innerHTML = "";
+            let files = document.getElementById("uploadFile").files;
+            for (let i = 0; i < files.length; i++) {
+                let img = document.createElement("img");
+                img.classList.add("previewSettingsImg");
+                img.file = files[i];
+                document.getElementById("previewSettings").appendChild(img);
+                var reader = new FileReader();
+                reader.onload = ( function(aImg) {
+                    return function(e) {
+                        aImg.src = e.target.result; 
+                    };
+                })(img);
+                reader.readAsDataURL(files[i]);
+            }
+        },
+        envoiModifPhotoProfil(){ // Envoi des modifications de la photo de profil via une requete PUT
+            let input = document.getElementById("uploadFile");
+            let file = input.files;
+            let formData = new FormData();
+            formData.append('image', file[0]);
+
+            axios.put('http://localhost:3000/api/user/addUserPhoto/'+ sessionStorage.getItem('user_id'),{
+                header: {   
+                    "Authorization": "Bearer " + token,
+                    'Content-Type' : 'image/png',
+                },
+                formData,  //envoi formData dans le corps de la requête
+            })
+            .then(
+                alert("Modifications sauvegardées !"),
+                window.location.reload()
+            )
+            .catch(function (error) {
+                console.log(error); 
+            }
+            
+        )},
+
+        // uploadImage(event) {
+        //     const URL = 'http://localhost:3000/api/user/addUserPhoto/'+ sessionStorage.getItem('user_id');
+
+        //     let data = new FormData;
+        //     data.append('name', 'my-picture'); // pour éventuellement renommer le fichier
+        //     console.log(event.target.files);
+        //     data.append('file', event.target.files[0]);
+
+        //     let config = {
+        //         header :
+        //         {   
+        //             "Authorization": "Bearer " + token,
+        //             'Content-Type' : 'image/png'
+        //         }
+        //     }
+        //     axios.put(
+        //         URL,
+        //         data,
+        //         config
+        //     ).then(
+        //         response => {
+        //             console.log('image upload response > ', response)
+        //         }
+        //     )
+        // },
 
         deleteUser: () => {
+            var x = confirm("Etes-vous sûr de vouloir supprimer votre profil ?");
+            if (x) {
+           
             axios.delete('http://localhost:3000/api/user/'+ sessionStorage.getItem('user_id'),{headers:{"Authorization": "Bearer " + token}})
-        
-            .then(function (response) {
-                console.log(response);
-                
-                location.replace("/")
-
-                        
-            })
-            
-            .catch(function (error) {
-                console.log(error);
-            });
+                    .then(function (response) {
+                        console.log(response);
+                        sessionStorage.removeItem("admin");
+                        sessionStorage.removeItem("status");
+                        sessionStorage.removeItem("user_id");
+                        sessionStorage.removeItem("token");
+                        sessionStorage.clear();
+                        router.replace("/")
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+            }
         },
-        logout() {
-            sessionStorage.removeItem("admin");
-            sessionStorage.removeItem("status");
-            sessionStorage.removeItem("user_id");
-            sessionStorage.removeItem("token");
-            sessionStorage.clear();
-            //router.replace("/login")
-            router.replace("/")
-        }
+        // logout() {
+        //     sessionStorage.removeItem("admin");
+        //     sessionStorage.removeItem("status");
+        //     sessionStorage.removeItem("user_id");
+        //     sessionStorage.removeItem("token");
+        //     sessionStorage.clear();
+        //     router.replace("/")
+        // },
+        
     
     }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+
+#previewSettings {
+    margin-bottom: 10px;
+    margin-top: 15px;
+    .previewSettingsIgm {
+        width: 100px;
+        border-radius: 30px;
+    }
+}
+#userDescription {
+    font-weight: bold;
+}
+.btn_submit {
+    cursor: pointer;
+    background-color: #122443;
+    color: white;
+    padding: 8px;
+    border-radius: 7px;
+    opacity: 0.6;
+    border: 2px solid black;
+}
+.btn_submit:hover {
+    opacity: 0.8;
+}
 
 </style>

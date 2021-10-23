@@ -2,7 +2,6 @@
     <div>
         <AdminNavBar/>   
     </div> 
-    <a>barre de recherche</a>
     <div class="allPostsBubbles">
         <ul>
             <li class="postContainer" v-for="post in allPosts" :key="post">

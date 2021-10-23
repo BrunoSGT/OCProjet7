@@ -72,10 +72,6 @@ export default {
     margin-left: auto;
     margin-right: auto;
 }
-
-// #allUsers {
-//     background-color: #aeaeae52;
-// }
 .usersList {
     background-color: #122443;
     color: white;

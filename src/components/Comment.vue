@@ -88,6 +88,18 @@ export default {
     font-size: 14px;
     color: #122443;
 }
+.btn {
+    cursor: pointer;
+    background-color: #122443;
+    color: white;
+    padding: 8px;
+    border-radius: 7px;
+    opacity: 0.6;
+    border: 2px solid black;
+}
+.btn:hover {
+    opacity: 0.8;
+}
 
 
        

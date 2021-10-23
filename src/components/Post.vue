@@ -15,7 +15,7 @@
                 <textarea v-model="content" name="contentPostBubble" id="contentPostBubble" data-displayname="Nouveau post" class="form-control" required  aria-required="true" type="text" placeholder="texte de votre post ( 255 caractères max. )"></textarea>
             </div>
         </div>
-    <button type="button" @click="submit" id="btn btn--submit">Envoyer</button>
+    <button type="button" @click="submit" id="btn_submit">Envoyer</button>
     </form>
 </template>
 
@@ -127,6 +127,18 @@ export default {
     font-family: system-ui, system-ui, sans-serif;
     font-size: 14px;
     color: #122443;
+}
+#btn_submit {
+    cursor: pointer;
+    background-color: #122443;
+    color: white;
+    padding: 8px;
+    border-radius: 7px;
+    opacity: 0.6;
+    border: 2px solid black;
+}
+#btn_submit:hover {
+    opacity: 0.8;
 }
 
 </style>
