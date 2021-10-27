@@ -12,11 +12,22 @@
     <!--<button class="btn_submit" @click="uploadImage($event)">Ajouter une image</button> -->
     </section>
     <section id="userDescription">
-        <div class="userInfos"> {{ user.id }} <br> {{ user.firstname }}, {{ user.lastname }}
+        <div class="userInfos">
+            <table> 
+                <tr>
+                    <td class="usersInfosLabel">Identifiant</td><td>{{ user.id }}</td>
+                </tr>
+                <tr>
+                    <td class="usersInfosLabel">Prénom</td><td>{{ user.firstname }}</td>
+                </tr>
+                <tr>
+                    <td class="usersInfosLabel">Nom</td><td>{{ user.lastname }}</td>
+                </tr>
+            </table>
         </div>
     </section>
     <section id="deleteProfile">
-        <p>Etes-vous sûr de vouloir vous effacer votre profil?😟</p>
+        <p>😞si vous souhaitez nous quitter...👇</p>
     <button class="btn_submit" v-on:click="deleteUser()">Supprimer mon profil</button>
     </section>    
   
@@ -58,8 +69,10 @@ export default {
             let files = document.getElementById("uploadFile").files;
             for (let i = 0; i < files.length; i++) {
                 let img = document.createElement("img");
-                img.classList.add("previewSettingsImg");
+                // img.classList.add("previewSettingsImg");
                 img.file = files[i];
+                img.style.width = "100px";
+                img.style.borderRadius = "50%";
                 document.getElementById("previewSettings").appendChild(img);
                 var reader = new FileReader();
                 reader.onload = ( function(aImg) {
@@ -76,15 +89,15 @@ export default {
             let formData = new FormData();
             formData.append('image', file[0]);
 
-            axios.put('http://localhost:3000/api/user/addUserPhoto/'+ sessionStorage.getItem('user_id'),{
+            axios.put('http://localhost:3000/api/user/addUserPhoto/'+ sessionStorage.getItem('user_id'), formData,{
                 header: {   
                     "Authorization": "Bearer " + token,
-                    'Content-Type' : 'image/png',
-                },
-                formData,  //envoi formData dans le corps de la requête
+                    'Content-Type' : 'application/json',
+                }
+                  //envoi formData dans le corps de la requête
             })
             .then(
-                alert("Modifications sauvegardées !"),
+                alert("Photo enregistrée !"),
                 window.location.reload()
             )
             .catch(function (error) {
@@ -157,13 +170,28 @@ export default {
 #previewSettings {
     margin-bottom: 10px;
     margin-top: 15px;
-    .previewSettingsIgm {
-        width: 100px;
-        border-radius: 30px;
-    }
+}
+.previewSettingsImg {
+    width: 100px;
+    border-radius: 30px;
 }
 #userDescription {
     font-weight: bold;
+}
+.userInfos{
+    display: inline-block;
+    margin: 16px;
+    text-align: left;
+
+}
+.usersInfosLabel {
+    display: inline-block;
+    font-weight: normal;
+    margin-right: 10px;
+}
+#deleteProfile {
+    margin-top: 30px;
+    margin-bottom: 15px;
 }
 .btn_submit {
     cursor: pointer;
