@@ -136,7 +136,6 @@ export default {
 <style scoped lang="scss">
 
 form {
-    //display: block;
     margin: auto;
     max-width: 480px;
 }
@@ -150,8 +149,7 @@ form {
     
 }
 .form-control {
-    //display: block;
-    width: 100%;
+    width: 90%;
     padding: .375rem .75rem;
     font-size: 1rem;
     line-height: 1.5;
@@ -160,7 +158,6 @@ form {
     background-clip: padding-box;
     border: 4px solid #122443;
     border-radius: .9rem;
-    transition: border-color .50s ease-in-out,box-shadow .50s ease-in-out;
 }
 span {
     background-color: rgb(168, 245, 248);

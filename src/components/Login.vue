@@ -63,17 +63,16 @@
         },
     
 ////////test pour faire apparaitre le lien "créer mon compte" si admin == 0 
-        nameApp: "userAccountCreation",
-        dataApp() {
-            return{ 
-                admin: ""
-            }
-        },
-        mounted: function(){
-            // location.reload();
-            console.log(sessionStorage.getItem('admin'));
-            this.admin = sessionStorage.getItem('admin')
-        }
+        // nameApp: "userAccountCreation",
+        // dataApp() {
+        //     return{ 
+        //         admin: ""
+        //     }
+        // },
+        // mounted: function(){
+        //     // location.reload();
+        //     this.admin = sessionStorage.getItem('admin')
+        // }
     };
     
 </script>

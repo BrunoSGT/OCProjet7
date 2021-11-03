@@ -35,7 +35,6 @@ export default {
     }
   },
   mounted: function(){
-    console.log(sessionStorage.getItem('status'));
     this.status = sessionStorage.getItem('status');
   }
 }
