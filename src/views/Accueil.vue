@@ -16,7 +16,7 @@
 import AdminNavBar from "@/components/AdminNavBar";
 import LatestsPosts from "@/components/LatestsPosts";
 export default{
-  name: "Accueil",   //"App"
+  name: "Accueil",   
   components: {AdminNavBar, LatestsPosts},
   data() {
         return{ 

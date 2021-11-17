@@ -73,13 +73,13 @@ a:hover {
   right: 34px;
   background-color: #122443;
   color: white;
+  font-weight: bold;
   padding: 8px;
   border-radius: 7px;
-  opacity: 0.6;
   border: 2px solid black;
 }
 .goToTop:hover {
-  opacity: 0.8;
+  opacity: 0.7;
 }
 </style>
 

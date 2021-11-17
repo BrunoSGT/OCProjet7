@@ -32,13 +32,11 @@ export default {
         }
     },
     mounted() {
-        const token= JSON.stringify(sessionStorage.getItem('token')); //jeton
+        const token= sessionStorage.getItem('token'); //jeton
         axios.get('http://localhost:3000/post/'+ this.$route.params.id, {headers:{'Authorization': "bearer " + token}}
         )
         .then(response =>{
-            this.posts = response.data;
-            console.log(this.posts)})
-        
+            this.posts = response.data}) // post de référence à commenter 
         .catch(error => { console.error(error)});
     }
     
@@ -62,7 +60,7 @@ export default {
     border-top-right-radius: 15px;
 }
 .contentPostBubble  {
-    background-color: #122443b5;
+    background-color: #122443d4;
     color: white;
     padding: 20px;
     display: block;

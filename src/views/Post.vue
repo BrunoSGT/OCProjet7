@@ -11,25 +11,17 @@
 <script>
 import Post from '../components/Post.vue'
 import UserConnectedNavBar from "@/components/UserConnectedNavBar";
-
-//import axios from 'axios'
-// const token= JSON.parse(sessionStorage.getItem('data')); //jeton  --> ajout 10/07
 export default {
-  name: 'Home',
-  components: {UserConnectedNavBar,
+    name: 'Home',
+    components: {UserConnectedNavBar,
     Post
-  },
-
-// ajout du 10/07
-
-        data() {
-            return {
-                posts: []
-               // showUsers: false
-            }
-        },
-       
-    }
+    },
+    data() {
+        return {
+            posts: []
+        }
+    },
+}
 </script>
 <style lang="scss" scoped>
 

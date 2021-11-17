@@ -9,20 +9,19 @@
             <div class="form__field">
                 <label for="titlePostBubble"></label>
                 <input v-model="title" name="titlePostBubble" id="titlePostBubble" data-displayname="Titre du post" class="form-control" required  aria-required="true" type="text" placeholder="titre de votre post">
+                <span v-if="msg.title">{{ msg.title}}</span>
             </div>
             <div class="form__field">
                 <label for="contentPostBubble"></label>
                 <textarea v-model="content" name="contentPostBubble" id="contentPostBubble" data-displayname="Nouveau post" class="form-control" required  aria-required="true" type="text" placeholder="texte de votre post ( 255 caractères max. )"></textarea>
             </div>
         </div>
-    <button type="button" @click="submit" id="btn_submit">Envoyer</button>
+    <button id="btn_submit" @click.prevent="submit()">Envoyer</button>
     </form>
 </template>
 
 <script> 
 import axios from "axios"
-// const token= JSON.stringify(sessionStorage.getItem('token')); //jeton
-
 export default {
     name:'Post-form',
     // fonction de récup des valeurs saisies (data store)
@@ -31,66 +30,77 @@ export default {
             errors: [],
             title: "",
             content: "",
-            user_id: sessionStorage.getItem('user_id')
+            user_id: sessionStorage.getItem('user_id'),
+            msg: [],
+            erreurTitlePostBubble: true,
+            erreurContent: true,
         }
     },
 //Ajout du 17/10 car envoi=OK même sans title    // utilisation de watch pour valider le form avant l'envoi au server
-    // watch: {
-    //     title(value){
-    //         this.title = value;
-    //         this.validateTitle(value);
-    //     },
-    //     content(value){
-    //         this.content = value;
-    //         this.validateContent(value);
-    //     }
-    // },
-    methods: {
-
-// la fonction checkForm ne pas opérationnelle au 17/10 // methode de validation des valeurs saisies avant l'envoi à la DB        
-        checkForm: function (e) {
-            if (this.title && this.content) {
-                return true;
-            }
-            this.errors = [];
-            if (!this.title) {
-                this.errors.push('Title required !');
-            }
-            if (!this.content) {
-                this.errors.push('Content required !');
-            }
-            e.preventDefault();
+    watch: {
+        title(value){
+            this.title = value;
+            this.validateTitle(value);
         },
-        //méthode de validation du form
-        // validateTitle(value){
-        //     if(value == ""){
-        //         this.msg['firstName'] = 'Please enter your firstname !';
-        //         this.erreur['firstName'] = true
-        //     }else{
-        //         this.erreur['firstName'] = false;
-        //         this.msg['firstName'] = ''
-        //     }
-        // },
+        content(value){
+            this.content = value;
+            this.validateContent(value);
+        }
+    },
+    methods: {
+//méthode de validation du form
+        validateTitle(value){
+            if(value == ""){
+                this.msg['titlePostBubble'] = 'Please enter title !';
+                this.erreurTitlePostBubble = true
+            }else{
+                this.erreurTitlePostBubble = false;
+                this.msg['titlePostBubble'] = ''
+            }
+        },
+        validateContent(value){
+            if(value == ""){
+                this.msg['content'] = 'Please enter your content !';
+                this.erreurContent = true
+            }else{
+                this.erreurContent = false;
+                this.msg['content'] = ''
+            }
+        },
+        warn: function (message, event) {
+            if (event) {
+                event.preventDefault()
+            }else{
+            alert(message)
+            }
+        },
 // methode de récupération des valeurs saisies et envoi à la DB
         submit: function () { 
-        console.log(this.title + this.content )
-            axios.post('http://localhost:3000/post', {//headers:{'Authorization': "bearer " + token},
-     
-                "title": this.title,
-                "content": this.content,
-                "userId": this.user_id
-            })
-
-            .then(function (response) {
-                console.log(response);
-                location.replace("/#/wallofposts");
-            })
-            .catch(function (error) {
-            console.log(error);
-            });     
+            const newPost = {
+                'title': this.title,
+                'content': this.content,
+                'userId': this.user_id
+            }
+            if(this.erreurTitlePostBubble !== true && this.erreurContent !== true){
+                const token= sessionStorage.getItem('token'); //jeton
+                console.log(token);
+                console.log(newPost.userId);
+                axios.post('http://localhost:3000/post',newPost,{headers:{'Authorization': "bearer " + token}
+                })
+                // console.log(this.title)
+                // console.log(this.content)
+                // console.log(this.user_id)
+                .then(function (response) {
+                    console.log(response);
+                    location.replace("/#/wallofposts");
+                })
+                .catch(function (error) {
+                console.log(error);
+                });     
+            }
         }
     }
-}   // fonction de récup + assign valeur à la variable message (this.message)+ mounted (get)
+}
 </script>
 
 <style lang="scss" scoped>
@@ -130,15 +140,14 @@ export default {
 }
 #btn_submit {
     cursor: pointer;
-    background-color: #122443;
+    background-color: #101f3a;
     color: white;
     padding: 8px;
     border-radius: 7px;
-    opacity: 0.6;
     border: 2px solid black;
 }
 #btn_submit:hover {
-    opacity: 0.8;
+    opacity: 0.7;
 }
 
 </style>

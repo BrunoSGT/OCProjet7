@@ -115,9 +115,9 @@ export default {
                 "password": this.password
             }
             if(this.erreur['firstName'] !== true && this.erreur['email'] !== true && this.erreur['password'] !== true){
-            console.log(contact)
-            console.log(this.erreur)
-            axios.post('http://localhost:3000/api/signup', contact )
+                console.log(contact)
+                console.log(this.erreur)
+                axios.post('http://localhost:3000/api/signup', contact )
                 .then(function (response) {
                     console.log(response);
                     location.replace("/login");
@@ -159,6 +159,10 @@ form {
     border: 4px solid #122443;
     border-radius: .9rem;
 }
+.form-control:hover {
+        background-color: #d1515a52;
+        transition: border-color 0.25s ease-in-out;
+}
 span {
     background-color: rgb(168, 245, 248);
     color: red;
@@ -169,7 +173,7 @@ span {
     }
 .backHome {
   height: 25px;
-  background-color: #aeaeae;
+  background-color: #d1515a52;
   margin-top: 15px;
   font-weight: bold;
 }

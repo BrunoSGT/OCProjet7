@@ -6,7 +6,9 @@
     <div id="allUsers" v-for="user in allUsers" :key="user">
         <ul>
             <li> 
-                <div class="usersList" v-bind:href="user.url"> utilisateur {{  user.id }} <br> {{ user.firstname }}, {{ user.lastname }}
+                <div class="usersList">
+                    <img v-bind:src="user.imageUrl" class="photoProfil" alt="photo de l'utilisateur">
+                    <div v-bind:href="user.url"> utilisateur {{  user.id }} <br> {{ user.firstname }}, {{ user.lastname }}</div>
                 </div>
                 <div class="setUserVisible">
                     <input type="checkbox" :id="'checkUser_'+String (user.id)" v-model=user.status true-value=1 false-value=0
@@ -30,7 +32,7 @@ export default {
         }
     },
     mounted() {
-        const token= JSON.stringify(sessionStorage.getItem('token')); //jeton
+        const token= sessionStorage.getItem('token'); //jeton
         axios.get('http://localhost:3000/api/user',{headers:{"Authorization": "Bearer " + token}})
         
         .then(response =>{
@@ -77,6 +79,11 @@ export default {
     color: white;
     padding: 10px;
     border-radius: 15px;
+}
+.photoProfil {
+    margin-top: 5px;
+    width: 30px;
+    border-radius: 50%;
 }
 .setUserVisible {
     color: black;

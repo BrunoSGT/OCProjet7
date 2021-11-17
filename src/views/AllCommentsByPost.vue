@@ -45,7 +45,8 @@ export default {
         }
     },
     mounted() {
-        axios.get('http://localhost:3000/post'//,{headers:{'Authorization': "bearer " + token}}
+        const token= sessionStorage.getItem('token'); //jeton
+        axios.get('http://localhost:3000/post',{headers:{'Authorization': "bearer " + token}}
         )
         .then(response =>{
             this.posts = response.data})
@@ -53,7 +54,7 @@ export default {
         .catch(error => { console.error(error)});
 
         // récupèrer tous les commentaires 
-        axios.get('http://localhost:3000/comment'//,{headers:{'Authorization': "bearer " + token}}
+        axios.get('http://localhost:3000/comment',{headers:{'Authorization': "bearer " + token}}
         )
         .then(response =>{
             this.allComments = response.data;})
@@ -122,7 +123,7 @@ export default {
     border-top-right-radius: 15px;
 }
 .contentCommentBubble {
-    background-color: #122443b5;
+    background-color: #122443d4;
     color: white;
     padding: 20px;
     display: block;
@@ -139,8 +140,8 @@ export default {
 .separation {
     font-weight: bold;
     border-bottom-style: solid;
-    background-color: #d1515a9c;
-    color: #122443b5;
+    background-color: #d1515a52;
+    color: #122443;
     font-size: large;
     display: flex;
     justify-content: center;

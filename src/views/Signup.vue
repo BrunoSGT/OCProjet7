@@ -14,11 +14,6 @@ export default {
     Signup
   }
 }
-
-
-
-
-
 </script>
 
 <style lang="scss" scoped>

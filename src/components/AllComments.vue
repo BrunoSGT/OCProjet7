@@ -45,7 +45,7 @@ export default {
         }
     },
     mounted() {
-        const token= JSON.stringify(sessionStorage.getItem('token')); //jeton
+        const token= sessionStorage.getItem('token'); //jeton
         axios.get('http://localhost:3000/comment/allCommentsForOnePost/'+ this.$route.params.id,{headers:{'Authorization': "bearer " + token}})
         
         .then(response =>{
@@ -78,37 +78,3 @@ export default {
     }                
 }
 </script>
-
-<style lang="scss" scoped >
-// .allCommentsBubbles ul {
-//     list-style-type: none;
-//     width: 50%;
-//     margin-left: auto;
-//     margin-right: auto;
-// }
-// .commentContainer {
-//     opacity: 0.8;
-// }
-// .titleCommentBubble {
-//     background-color: #122443;
-//     color: white;
-//     padding: 10px;
-//     border-top-left-radius: 15px; 
-//     border-top-right-radius: 15px;
-// }
-// .contentCommentBubble {
-//     background-color: #122443b5;
-//     color: white;
-//     padding: 20px;
-//     display: block;
-//     text-align: left;
-//     word-wrap: break-word;
-//     border-bottom-left-radius: 15px; 
-//     border-bottom-right-radius: 15px;
-// }
-// .setCommentVisible {
-//     color: black;
-//     margin-top: 10px;
-//     margin-bottom: 25px;
-// }
-</style>

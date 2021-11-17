@@ -24,8 +24,6 @@
 import AdminNavBar from "@/components/AdminNavBar";
 import UserConnectedNavBar from "@/components/UserConnectedNavBar";
 import Login from '../components/Login'
-
-
 export default {
   name: 'Home',
   components: {AdminNavBar, UserConnectedNavBar, Login},
@@ -44,8 +42,12 @@ export default {
 
 .signupInHome {
   height: 25px;
-  background-color: #aeaeae;
+  background-color: #d1515a52;
   margin-top: 15px;
   font-weight: bold;
+  opacity: 0.85;
+}
+a {
+  color: #122443;
 }
 </style>

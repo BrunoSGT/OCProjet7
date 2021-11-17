@@ -18,7 +18,6 @@
         </div>
         <div id="connexion">
             <button @click.prevent="submit" class="btn btn--submit">Se connecter</button>
-            <router-link to="/accueil"></router-link>
         </div>
     </form>
 </template>
@@ -60,21 +59,8 @@
                 });
             },
             
-        },
-    
-////////test pour faire apparaitre le lien "créer mon compte" si admin == 0 
-        // nameApp: "userAccountCreation",
-        // dataApp() {
-        //     return{ 
-        //         admin: ""
-        //     }
-        // },
-        // mounted: function(){
-        //     // location.reload();
-        //     this.admin = sessionStorage.getItem('admin')
-        // }
+        },  
     };
-    
 </script>
 
 <style scoped lang="scss">
@@ -102,10 +88,23 @@
         background-clip: padding-box;
         border: 4px solid #122443;
         border-radius: .9rem;
-        transition: border-color .70s ease-in-out, box-shadow .70s ease-in-out;
+        
+    }
+    .form-control:hover {
+        background-color: #d1515a52;
+        transition: border-color 0.25s ease-in-out;
     }
     .btn {
         background-color: #122443;
         color: white;
     }
+/* Ecrans Mobiles */
+  @media (min-width: 280px) and (max-width: 881px) { 
+    .form-control {
+        box-sizing: border-box;
+        height: auto;
+        padding: 6px;
+        font-size: 16px;
+    }
+  }    
 </style>

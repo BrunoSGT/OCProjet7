@@ -31,7 +31,7 @@ ul {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  background-color: #d1515a9c;
+  background-color: #d1515a52;
   padding: 15px;
   margin-block-end: 0;
 }

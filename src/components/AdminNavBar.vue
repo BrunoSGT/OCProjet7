@@ -28,7 +28,7 @@
 </template>
 
 <script>
-  import axios from "axios"
+  // import axios from "axios"
   export default {
     name: "AdminNavBar",
     data() {
@@ -38,20 +38,20 @@
         showPosts: false
       }
     },
-    mounted() {
-      const token= JSON.stringify(sessionStorage.getItem('token')); //jeton
-      this.status = sessionStorage.getItem('status');
-      axios.get(
-          'http://localhost:3000/post/wallOfPosts' ,{headers:{'Authorization': "bearer " + token}}
-        )
-        .then(response => {
-          this.wallOfPosts = response.data;
-          this.status = response.data.status
-        })
-        .catch(error => {
-          console.error(error)
-        });
-    },
+    // mounted() {
+    //   const token= JSON.stringify(sessionStorage.getItem('token')); //jeton
+    //   this.status = sessionStorage.getItem('status');
+    //   axios.get(
+    //       'http://localhost:3000/post/wallOfPosts' ,{headers:{'Authorization': "bearer " + token}}
+    //     )
+    //     .then(response => {
+    //       this.wallOfPosts = response.data;
+    //       this.status = response.data.status
+    //     })
+    //     .catch(error => {
+    //       console.error(error)
+    //     });
+    // },
   }
 </script>
 

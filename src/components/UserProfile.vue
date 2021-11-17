@@ -5,12 +5,12 @@
     <h1>Mon profil</h1>
     <section id="photo">
         <div class=" boxPhotoProfile">
-            <input type="file" accept="image/*" @change="handleFiles()" name="images" id="uploadFile" placeholder="Photo">
+            <input type="file" aria-controls="uploadFile" accept="image/*" @change="handleFiles()" name="images" id="uploadFile" placeholder="Photo">
         </div>
         <div id="previewSettings">
-            <!-- <img src="../assets/ProfileIcon.jpg" class="profileIcon"> -->
+            <img v-bind:src="user.imageUrl" class="previewSettingsImg" alt="photo du profil utilisateur">
         </div>
-        <input type="button" name="" value="Ajouter ma photo" @click="envoiModifPhotoProfil">
+        <input type="button" disabled name="sendPhoto" id="sendPhoto" value="Ajouter ma photo" @click="envoiModifPhotoProfil">
     </section>
     <section id="userDescription">
         <div class="userInfos">
@@ -40,7 +40,7 @@ import UserConnectedNavBar from "@/components/UserConnectedNavBar";
 import axios from "axios"
 import router from '@/router/index'
 
-const token= JSON.stringify(sessionStorage.getItem('token')); //jeton
+const token= sessionStorage.getItem('token'); //jeton
 
 export default {
     name: 'UserProfile',
@@ -56,13 +56,9 @@ export default {
         axios.get('http://localhost:3000/api/user/'+ sessionStorage.getItem('user_id'),{headers:{"Authorization": "Bearer " + token}})
         
         .then(response =>{
-            console.log(response),
-            this.user = response.data 
-            console.log(this.user)})
-        
+            this.user = response.data})
         .catch(error => { console.error(error)});
     },
-
     methods: {
         handleFiles(){ // Cette fonction permet d'avoir une miniature des fichiers qui vont être uploadés même si ils ne possèdent pas encore d'URLs
             document.getElementById("previewSettings").innerHTML = "";
@@ -81,6 +77,7 @@ export default {
                 })(img);
                 reader.readAsDataURL(files[i]);
             }
+            document.getElementById("sendPhoto").disabled = false;
         },
         envoiModifPhotoProfil(){ // Envoi des modifications de la photo de profil via une requete PUT
         console.log("ok");
@@ -88,8 +85,6 @@ export default {
             let file = input.files;
             let formData = new FormData();
             formData.append('images', file[0]);
-            console.log(file[0]);
-            console.log(formData.images);
             axios.put('http://localhost:3000/api/user/addUserPhoto/'+ sessionStorage.getItem('user_id'), formData,{
                 header: {   
                     "Authorization": "Bearer " + token,
@@ -102,17 +97,13 @@ export default {
                 // window.location.reload()
             )
             .catch(function (error) {
-                console.log(error); 
+                console.log(error)
             }
-            
         )},
-
         deleteUser: () => {
             let self = this
-
             var x = confirm("Etes-vous sûr de vouloir supprimer votre profil ?");
             if (x) {
-           
             axios.delete('http://localhost:3000/api/user/'+ sessionStorage.getItem('user_id'),{headers:{"Authorization": "Bearer " + token}})
                     .then(function (response) {
                         console.log(response);
@@ -142,15 +133,10 @@ export default {
 #previewSettings {
     margin-bottom: 10px;
     margin-top: 15px;
-    // background-image: url("../assets/ProfileIcon.jpg");
-}
-.profileIcon {
-    width: 100px;
-    border-radius: 30px;
 }
 .previewSettingsImg {
-    width: 100px;
-    border-radius: 30px;
+    width: 200px;
+    border-radius: 50%;
 }
 #userDescription {
     font-weight: bold;
@@ -176,11 +162,10 @@ export default {
     color: white;
     padding: 8px;
     border-radius: 7px;
-    opacity: 0.6;
     border: 2px solid black;
 }
 .btn_submit:hover {
-    opacity: 0.8;
+    opacity: 0.7;
 }
 
 </style>

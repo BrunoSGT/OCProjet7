@@ -7,7 +7,10 @@
         <ul>
             <li>
                 <div class="titlePostBubble" > {{ posts.title }} </div>  
-                <div class="contentPostBubble">{{ posts.content }}, {{ posts.updatedAt}} </div>
+                <div class="contentPostBubble">
+                    <!-- <div><img v-bind:src="posts.user.imageUrl" class="photoProfil"/></div> -->
+                    <div>{{ posts.content }} <br/><br/> <p>post n° {{ posts.id }}</p> <br/> {{ posts.updatedAt}}</div> 
+                </div>
             </li>
         </ul>
         
@@ -16,7 +19,10 @@
         <ul>
             <li class="commentContainer" v-for="comment in allComments" :key="comment">
                 <div class="titleCommentBubble" > {{ comment.title }} </div>  
-                <div class="contentCommentBubble"> {{ comment.content }}, {{ comment.updatedAt}} </div>
+                <div class="contentCommentBubble"> 
+                    <!-- <div><img v-bind:src="user.imageUrl" class="photoProfil"/></div> -->
+                    <div>{{ comment.content }} <br/><br/> {{ comment.updatedAt}}</div>
+                </div>
             </li>
         </ul>
     </div> 
@@ -30,12 +36,13 @@ export default {
     components: {UserConnectedNavBar},
     data() {
         return {
+            users: [],
             posts: [],
             allComments: [],
         }
     },
     mounted() {
-        const token= JSON.stringify(sessionStorage.getItem('token')); //jeton
+        const token= sessionStorage.getItem('token'); //jeton
         axios.get('http://localhost:3000/post/'+ this.$route.params.id,{headers:{'Authorization': "bearer " + token}}
         )
         .then(response =>{
@@ -49,7 +56,6 @@ export default {
         )
         .then(response =>{
             this.allComments = response.data;
-            console.log(this.allComments)  
             this.visible = response.data.visible})
         .catch(error => { console.error(error)});
     } 
@@ -68,14 +74,19 @@ export default {
     border-top-right-radius: 15px;
 }
 .contentPostBubble  {
-    background-color: #122443b5;
+    text-align: center;
+    background-color: #122443d4;
     color: white;
     padding: 20px;
     display: block;
-    text-align: left;
     word-wrap: break-word;
     border-bottom-left-radius: 15px; 
     border-bottom-right-radius: 15px;
+}
+.photoProfil {
+    margin-top: 5px;
+    width: 30px;
+    border-radius: 50%;
 }
 .allCommentsBubbles ul {
     list-style-type: none;
@@ -97,7 +108,7 @@ export default {
     border-top-right-radius: 15px;
 }
 .contentCommentBubble {
-    background-color: #122443b5;
+    background-color: #122443d4;
     color: white;
     padding: 20px;
     display: block;

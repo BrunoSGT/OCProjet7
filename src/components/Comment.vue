@@ -90,15 +90,14 @@ export default {
 }
 .btn {
     cursor: pointer;
-    background-color: #122443;
+    background-color: #101f3a;
     color: white;
     padding: 8px;
     border-radius: 7px;
-    opacity: 0.6;
     border: 2px solid black;
 }
 .btn:hover {
-    opacity: 0.8;
+    opacity: 0.7;
 }
 
 
