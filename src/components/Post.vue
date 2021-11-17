@@ -36,7 +36,7 @@ export default {
             erreurContent: true,
         }
     },
-//Ajout du 17/10 car envoi=OK même sans title    // utilisation de watch pour valider le form avant l'envoi au server
+// utilisation de watch pour valider le form avant l'envoi au server
     watch: {
         title(value){
             this.title = value;

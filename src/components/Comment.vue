@@ -16,33 +16,73 @@ import axios from "axios"
 export default {
     name:"Comment-form",
     
-    // fonction de récup des valeurs saisies (data store)
+// fonction de récup des valeurs saisies (data store)
     data() {
         return{ 
             title: "",
             content: "",
-            user_id: sessionStorage.getItem('user_id')
+            user_id: sessionStorage.getItem('user_id'),
+            msg: [],
+            erreurTitleBubble: true,
+            erreurContent: true,
         }
     },
-    // methode de récupération des valeurs saisies et envoi à la DB
+// utilisation de watch pour valider le form avant l'envoi au server
+    watch: {
+        title(value){
+            this.title = value;
+            this.validateTitle(value);
+        },
+        content(value){
+            this.content = value;
+            this.validateContent(value);
+        }
+    },
+// methode de récupération des valeurs saisies et envoi à la DB
     methods: {
-        submit: function () { // eslint-disable-line no-unused-vars
-        const token= JSON.stringify(sessionStorage.getItem('token')); //jeton
-        console.log(this.title + this.content )
-            axios.post('http://localhost:3000/comment/', {headers:{'Authorization': "bearer " + token},
-                "title": this.title,
-                "content": this.content,
-                "postId": this.$route.params.id,
-                "userId": this.user_id
-            })
-            
-        .then(function (response) {
-        console.log(response);
-        location.reload();
-        })
-        .catch(function (error) {
-        console.log(error);
-        });     
+//méthode de validation du form
+        validateTitle(value){
+            if(value == ""){
+                this.msg['titleBubble'] = 'Please enter title !';
+                this.erreurTitleBubble = true
+            }else{
+                this.erreurTitleBubble = false;
+                this.msg['titleBubble'] = ''
+            }
+        },
+        validateContent(value){
+            if(value == ""){
+                this.msg['content'] = 'Please enter your content !';
+                this.erreurContent = true
+            }else{
+                this.erreurContent = false;
+                this.msg['content'] = ''
+            }
+        },
+        warn: function (message, event) {
+            if (event) {
+                event.preventDefault()
+            }else{
+            alert(message)
+            }
+        },
+        submit: function () { 
+            if(this.erreurTitleBubble !== true && this.erreurContent !== true){
+                const token= sessionStorage.getItem('token'); //jeton
+                axios.post('http://localhost:3000/comment/', {headers:{'Authorization': "bearer " + token},
+                    "title": this.title,
+                    "content": this.content,
+                    "postId": this.$route.params.id,
+                    "userId": this.user_id
+                })
+                .then(function (response) {
+                console.log(response);
+                location.reload();
+                })
+                .catch(function (error) {
+                console.log(error);
+                });
+            }     
         }
     }
 }   // fonction de récup + assign valeur à la variable message (this.message)+ mounted (get)
