@@ -59,7 +59,6 @@ export default {
         )
         .then(response =>{
             this.allComments = response.data;})
-              
         .catch(error => { console.error(error)});
     },
     methods: {
@@ -75,7 +74,6 @@ export default {
             })
             .catch(function (error) {
                 console.log(error);
-            
             });
         }
     }                

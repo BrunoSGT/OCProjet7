@@ -76,12 +76,7 @@ export default {
             }
             if(this.erreurTitleBubble !== true && this.erreurContent !== true){
                 const token= sessionStorage.getItem('token'); //jeton
-                axios.post('http://localhost:3000/comment/',newComment,{headers:{'Authorization': "bearer " + token}})//,
-                //     "title": this.title,
-                //     "content": this.content,
-                //     "postId": this.$route.params.id,
-                //     "userId": this.user_id
-                // })
+                axios.post('http://localhost:3000/comment/',newComment,{headers:{'Authorization': "bearer " + token}})
                 .then(function (response) {
                 console.log(response);
                 location.reload();

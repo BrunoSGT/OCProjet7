@@ -85,9 +85,6 @@ export default {
                 const token= sessionStorage.getItem('token'); //jeton
                 axios.post('http://localhost:3000/post',newPost,{headers:{'Authorization': "bearer " + token}
                 })
-                // console.log(this.title)
-                // console.log(this.content)
-                // console.log(this.user_id)
                 .then(function (response) {
                     console.log(response);
                     location.replace("/#/wallofposts");

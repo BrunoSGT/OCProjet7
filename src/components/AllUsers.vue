@@ -28,7 +28,8 @@ export default {
     components: {AdminNavBar},
     data() {
         return {
-            allUsers: []
+            allUsers: [],
+            status: ""
         }
     },
     mounted() {
@@ -40,9 +41,13 @@ export default {
     },
     methods: {
         submit(id, statusValidation){
-            axios.put('http://localhost:3000/api/user/'+id,
-            {   
-                status: statusValidation ? 0:1
+            const token= sessionStorage.getItem('token'); //jeton     
+            const status = {
+                'status': statusValidation ? 0:1 
+            }
+            axios.put('http://localhost:3000/api/user/'+id,status,{headers:{"Authorization": "Bearer " + token}
+            // {   
+            //     status: statusValidation ? 0:1
             })
             .then(function (response) {
                 console.log(response);
