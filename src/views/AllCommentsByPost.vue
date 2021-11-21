@@ -42,6 +42,7 @@ export default {
         return {
             posts: [],
             allComments: [],
+            visible: ""
         }
     },
     mounted() {
@@ -63,11 +64,12 @@ export default {
     },
     methods: {
         submit(id, commentVisibility){ 
-            axios.put('http://localhost:3000/comment/'+id,
-            {
-                visible: commentVisibility ? 0:1 
-            })
-            
+            const token= sessionStorage.getItem('token'); //jeton     
+            const visible = {
+            'visible': commentVisibility ? 0:1 
+            }
+
+            axios.put('http://localhost:3000/comment/'+id,visible,{headers:{'Authorization': "bearer " + token}})
             .then(function (response) {
                 console.log(response);
             })
@@ -75,9 +77,6 @@ export default {
                 console.log(error);
             
             });
-            console.log(event.target.id)
-            console.log(event.target.checked)
-            console.log(event.target.id.substring(10))
         }
     }                
 }

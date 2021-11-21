@@ -34,21 +34,16 @@ export default {
     mounted() {
         const token= sessionStorage.getItem('token'); //jeton
         axios.get('http://localhost:3000/api/user',{headers:{"Authorization": "Bearer " + token}})
-        
         .then(response =>{
-            console.log(response),
             this.allUsers = response.data })
-        
         .catch(error => { console.error(error)});
     },
     methods: {
-        submit(id, statusValidation){ //, userVisibility
+        submit(id, statusValidation){
             axios.put('http://localhost:3000/api/user/'+id,
             {   
-                status: statusValidation ? 0:1 
-                // visible: userVisibility ? 0:1 
+                status: statusValidation ? 0:1
             })
-            
             .then(function (response) {
                 console.log(response);
             })
@@ -56,6 +51,9 @@ export default {
                 console.log(error);
             
             });
+            console.log(event.target.id)
+            console.log(event.target.checked)
+            console.log(event.target.id.substring(10))
         }
     }                
 }

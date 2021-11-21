@@ -1,9 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Home from '../views/Home.vue' 
 //import About from '../views/About.vue' //autre façon d'importer le component dans la route 
-// import Admin from '../views/Admin.vue'
-import Post from '../views/Post.vue'
-import PostToComment from '../views/PostToComment.vue'
 
 const routes = [
   {
@@ -14,16 +11,8 @@ const routes = [
   {
     path: '/about',
     name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import( /*webpackChunkName  "about" */  '../views/About.vue')
   },
-  // {
-  //   path: '/login',
-  //   name: 'Login',
-  //   component: () => import('../components/Login.vue')
-  // },  
   {
     path: '/logout',
     name: 'Logout',
@@ -39,11 +28,6 @@ const routes = [
     name: 'Accueil',
     component: () => import('../views/Accueil.vue')
   },
-  // {
-  //   path: '/userconnectednavbar',
-  //   name: 'UserConnectedNavBar',
-  //   component: () => import('../components/UserConnectedNavBar')
-  // },    
   {
     path: '/allusers',
     name: 'AllUsers',
@@ -52,7 +36,8 @@ const routes = [
   {
     path: '/post',
     name: 'Post-form',
-    component: Post
+    component: () => import('../views/Post.vue')
+
   },      
   {
     path: '/allposts',
@@ -72,7 +57,8 @@ const routes = [
   {
     path: '/posttocomment/:id',
     name: 'PostToComment',
-    component: PostToComment
+    component: () => import('../views/PostToComment.vue')
+
   },
   {
     path: '/allcommentsbypost',

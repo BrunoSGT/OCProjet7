@@ -19,8 +19,6 @@
         </ul>
         
     </div>
-<!-- </section>    -->
-
 </template>
 
 <script>
@@ -32,26 +30,26 @@ export default {
     data() {
         return {
             allPosts: [],
+            visible: "" 
         }
     },
     mounted() {
         const token= sessionStorage.getItem('token'); //jeton
         console.log(token)
-        axios.get('http://localhost:3000/post/',{headers:{'Authorization': 'bearer ' + token}})
+        axios.get('http://localhost:3000/post/',{headers:{'Authorization': "bearer " + token}})
         
         .then(response =>{
-            console.log(response)
-            this.allPosts = response.data })
-        
+            this.allPosts = response.data; 
+            console.log(response) })
         .catch(error => { console.error(error)});
     },
     methods: {
         submit(id, postVisibility){ 
-            axios.put('http://localhost:3000/post/'+id,
-            {
-                visible: postVisibility ? 0:1 
-            })
-            
+            const token= sessionStorage.getItem('token'); //jeton     
+            const visible = {
+                'visible': postVisibility ? 0:1 
+            }
+            axios.put('http://localhost:3000/post/'+id,visible,{headers:{'Authorization': "bearer " + token}})
             .then(function (response) {
                 console.log(response);
             })

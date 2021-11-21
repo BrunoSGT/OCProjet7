@@ -44,13 +44,12 @@
                         "password": this.password
                 })
                 .then(function (response) {
-                    console.log(response);
                     // stockage local des infos durant la session de navigation lors de l'envoi du formulaire
                     sessionStorage.setItem("admin", response.data.admin); // paire("clé",valeur)
                     sessionStorage.setItem("status", response.data.status);
                     sessionStorage.setItem("user_id", response.data.userId);
                     sessionStorage.setItem("token", response.data.token);
-                    location.replace("#/accueil");
+                    location.replace("#/about");
                     
                 })
                 .catch(function (error) {

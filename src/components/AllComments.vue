@@ -28,8 +28,6 @@
     </div> 
         
     </div>
-<!-- </section>    -->
-
 </template>
 
 <script>
@@ -52,10 +50,6 @@ export default {
             this.allComments = response.data;
             console.log(this.allComments)  })
         .catch(error => { console.error(error)});
-    
-
-
-        
     },
     methods: {
         submit(id, postVisibility){ 

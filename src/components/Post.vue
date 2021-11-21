@@ -83,8 +83,6 @@ export default {
             }
             if(this.erreurTitlePostBubble !== true && this.erreurContent !== true){
                 const token= sessionStorage.getItem('token'); //jeton
-                console.log(token);
-                console.log(newPost.userId);
                 axios.post('http://localhost:3000/post',newPost,{headers:{'Authorization': "bearer " + token}
                 })
                 // console.log(this.title)

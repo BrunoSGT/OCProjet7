@@ -8,7 +8,6 @@
             <li>
                 <div class="titlePostBubble" > {{ posts.title }} </div>  
                 <div class="contentPostBubble">
-                    <!-- <div><img v-bind:src="posts.user.imageUrl" class="photoProfil"/></div> -->
                     <div>{{ posts.content }} <br/><br/> <p>post n° {{ posts.id }}</p> <br/> {{ posts.updatedAt}}</div> 
                 </div>
             </li>
@@ -20,7 +19,6 @@
             <li class="commentContainer" v-for="comment in allComments" :key="comment">
                 <div class="titleCommentBubble" > {{ comment.title }} </div>  
                 <div class="contentCommentBubble"> 
-                    <!-- <div><img v-bind:src="user.imageUrl" class="photoProfil"/></div> -->
                     <div>{{ comment.content }} <br/><br/> {{ comment.updatedAt}}</div>
                 </div>
             </li>
@@ -46,14 +44,12 @@ export default {
         axios.get('http://localhost:3000/post/'+ this.$route.params.id,{headers:{'Authorization': "bearer " + token}}
         )
         .then(response =>{
-            // console.log(this.posts)
             this.posts = response.data})
             
         .catch(error => { console.error(error)});
 
         // récupère le commantaires liés à un post
-        axios.get('http://localhost:3000/comment/allCommentsForOnePost/'+this.$route.params.id//,{headers:{'Authorization': "bearer " + token}})
-        )
+        axios.get('http://localhost:3000/comment/allCommentsForOnePost/'+this.$route.params.id,{headers:{'Authorization': "bearer " + token}})
         .then(response =>{
             this.allComments = response.data;
             this.visible = response.data.visible})

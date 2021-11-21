@@ -25,6 +25,7 @@ export default {
             msg: [],
             erreurTitleBubble: true,
             erreurContent: true,
+
         }
     },
 // utilisation de watch pour valider le form avant l'envoi au server
@@ -66,15 +67,21 @@ export default {
             alert(message)
             }
         },
-        submit: function () { 
+        submit: function () {
+            const newComment = {
+                'title': this.title,
+                'content': this.content,
+                'postId': this.$route.params.id,
+                'userId': this.user_id
+            }
             if(this.erreurTitleBubble !== true && this.erreurContent !== true){
                 const token= sessionStorage.getItem('token'); //jeton
-                axios.post('http://localhost:3000/comment/', {headers:{'Authorization': "bearer " + token},
-                    "title": this.title,
-                    "content": this.content,
-                    "postId": this.$route.params.id,
-                    "userId": this.user_id
-                })
+                axios.post('http://localhost:3000/comment/',newComment,{headers:{'Authorization': "bearer " + token}})//,
+                //     "title": this.title,
+                //     "content": this.content,
+                //     "postId": this.$route.params.id,
+                //     "userId": this.user_id
+                // })
                 .then(function (response) {
                 console.log(response);
                 location.reload();
@@ -85,7 +92,7 @@ export default {
             }     
         }
     }
-}   // fonction de récup + assign valeur à la variable message (this.message)+ mounted (get)
+}
 </script>
 
 <style lang="scss" scoped>
