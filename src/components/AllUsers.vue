@@ -45,10 +45,7 @@ export default {
             const status = {
                 'status': statusValidation ? 0:1 
             }
-            axios.put('http://localhost:3000/api/user/'+id,status,{headers:{"Authorization": "Bearer " + token}
-            // {   
-            //     status: statusValidation ? 0:1
-            })
+            axios.put('http://localhost:3000/api/user/'+id,status,{headers:{"Authorization": "Bearer " + token}})
             .then(function (response) {
                 console.log(response);
             })

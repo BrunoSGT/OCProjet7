@@ -28,7 +28,8 @@
         </div>
     </section>
     <section id="deleteProfile">
-        <p>😞si vous souhaitez nous quitter...👇</p>
+        <p>😞si vous souhaitez nous quitter...</p>
+        <p>👇</p>
     <button class="btn_submit" v-on:click="deleteUser()">Supprimer mon profil</button>
     </section>    
   

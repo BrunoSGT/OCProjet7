@@ -37,7 +37,6 @@ export default {
         const token= sessionStorage.getItem('token'); //jeton
         console.log(token)
         axios.get('http://localhost:3000/post/',{headers:{'Authorization': "bearer " + token}})
-        
         .then(response =>{
             this.allPosts = response.data; 
             console.log(response) })
@@ -49,7 +48,7 @@ export default {
             const visible = {
                 'visible': postVisibility ? 0:1 
             }
-            axios.put('http://localhost:3000/post/'+id,visible,{headers:{'Authorization': "bearer " + token}})
+            axios.put('http://localhost:3000/post/'+id,visible,{headers:{'Authorization': "Bearer " + token}})
             .then(function (response) {
                 console.log(response);
             })
