@@ -14,7 +14,7 @@
         <div class="form__field">
             <label for="password">Mot de passe</label>
             <input v-model="password" name="password" id="password" data-displayname="Mot de passe" class="form-control"
-                required aria-required="true" type="text">
+                required aria-required="true" type="password">
         </div>
         <div id="connexion">
             <button @click.prevent="submit" class="btn btn--submit">Se connecter</button>

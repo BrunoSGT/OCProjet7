@@ -35,11 +35,11 @@ export default {
     },
     mounted() {
         const token= sessionStorage.getItem('token'); //jeton
-        console.log(token)
-        axios.get('http://localhost:3000/post/',{headers:{'Authorization': "bearer " + token}})
+        // console.log(token)
+        axios.get('http://localhost:3000/post/',{headers:{'Authorization': "Bearer " + token}})
         .then(response =>{
-            this.allPosts = response.data; 
-            console.log(response) })
+            this.allPosts = response.data })
+            // console.log(response) })
         .catch(error => { console.error(error)});
     },
     methods: {
@@ -56,9 +56,9 @@ export default {
                 console.log(error);
             
             });
-            console.log(event.target.id)
-            console.log(event.target.checked)
-            console.log(event.target.id.substring(10))
+            // console.log(event.target.id)
+            // console.log(event.target.checked)
+            // console.log(event.target.id.substring(10))
         }
     }                
 }

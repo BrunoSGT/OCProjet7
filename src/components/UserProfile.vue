@@ -86,8 +86,8 @@ export default {
             let file = input.files;
             let formData = new FormData();
             formData.append('images', file[0]);
-            axios.put('http://localhost:3000/api/user/addUserPhoto/'+ sessionStorage.getItem('user_id'), formData,{
-                header: {   
+            axios.put('http://localhost:3000/api/user/addUserPhoto/'+sessionStorage.getItem('user_id'), formData,{   //+sessionStorage.getItem('user_id') à la place de +id
+                headers: {   
                     "Authorization": "Bearer " + token,
                     'Content-Type' : 'application/json',
                 }
